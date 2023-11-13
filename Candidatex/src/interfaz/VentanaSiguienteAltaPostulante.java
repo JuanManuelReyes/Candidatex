@@ -1,3 +1,10 @@
+/*
+Autores:
+Juan Manuel Reyes | Nro. Estudiante 316445
+Facundo Layes | Nro. Estudiante 248464
+
+Repositorio: https://github.com/JuanManuelReyes/Candidatex
+ */
 package interfaz;
 
 import dominio.*;
@@ -57,18 +64,18 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
 
         jLabelTema.setText("Tema:");
         jPanel1.add(jLabelTema);
-        jLabelTema.setBounds(140, 60, 50, 17);
+        jLabelTema.setBounds(140, 60, 50, 16);
 
         jLabelTema1.setText("Nivel:");
         jPanel1.add(jLabelTema1);
         jLabelTema1.setBounds(140, 100, 50, 20);
 
         jPanel1.add(comboTema);
-        comboTema.setBounds(190, 60, 150, 23);
+        comboTema.setBounds(190, 60, 150, 22);
 
         spnNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         jPanel1.add(spnNivel);
-        spnNivel.setBounds(190, 100, 64, 23);
+        spnNivel.setBounds(190, 100, 64, 22);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +84,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(270, 100, 74, 23);
+        btnAgregar.setBounds(270, 100, 72, 23);
 
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 70));
         jPanel1.add(jSeparator1);
@@ -85,7 +92,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
 
         jLabelExperiencia.setText("Experiencia:");
         jPanel1.add(jLabelExperiencia);
-        jLabelExperiencia.setBounds(60, 170, 80, 17);
+        jLabelExperiencia.setBounds(60, 170, 80, 16);
 
         listaExperiencia.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -104,7 +111,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(60, 190, 76, 23);
+        btnEliminar.setBounds(60, 190, 73, 23);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +120,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(240, 360, 81, 23);
+        btnCancelar.setBounds(240, 360, 76, 23);
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +129,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(330, 360, 82, 23);
+        btnRegistrar.setBounds(330, 360, 76, 23);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 470, 400);

@@ -1,3 +1,10 @@
+/*
+Autores:
+Juan Manuel Reyes | Nro. Estudiante 316445
+Facundo Layes | Nro. Estudiante 248464
+
+Repositorio: https://github.com/JuanManuelReyes/Candidatex
+ */
 package dominio;
 
 import java.io.Serializable;

@@ -1,3 +1,10 @@
+/*
+Autores:
+Juan Manuel Reyes | Nro. Estudiante 316445
+Facundo Layes | Nro. Estudiante 248464
+
+Repositorio: https://github.com/JuanManuelReyes/Candidatex
+ */
 package interfaz;
 
 import dominio.*;
@@ -98,63 +105,63 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
         jLabelPostulantes.setText("Postulantes:");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(50, 60, 90, 17);
+        jLabelPostulantes.setBounds(50, 60, 90, 16);
 
         jLabelNombre.setText("Nombre:");
         jPanel1.add(jLabelNombre);
-        jLabelNombre.setBounds(450, 60, 70, 17);
+        jLabelNombre.setBounds(450, 60, 70, 16);
 
         jLabelCedula.setText("Cédula:");
         jPanel1.add(jLabelCedula);
-        jLabelCedula.setBounds(450, 100, 60, 17);
+        jLabelCedula.setBounds(450, 100, 60, 16);
 
         jLabelDireccion.setText("Dirección:");
         jPanel1.add(jLabelDireccion);
-        jLabelDireccion.setBounds(450, 140, 80, 17);
+        jLabelDireccion.setBounds(450, 140, 80, 16);
 
         jLabelTelefono.setText("Teléfono:");
         jPanel1.add(jLabelTelefono);
-        jLabelTelefono.setBounds(450, 180, 70, 17);
+        jLabelTelefono.setBounds(450, 180, 70, 16);
 
         jLabelMail.setText("Mail:");
         jPanel1.add(jLabelMail);
-        jLabelMail.setBounds(450, 220, 50, 17);
+        jLabelMail.setBounds(450, 220, 50, 16);
 
         jLabelLinkedin.setText("LinkedIn:");
         jPanel1.add(jLabelLinkedin);
-        jLabelLinkedin.setBounds(450, 260, 70, 17);
+        jLabelLinkedin.setBounds(450, 260, 70, 16);
 
         jLabelFormato.setText("Experiencia:");
         jPanel1.add(jLabelFormato);
-        jLabelFormato.setBounds(450, 340, 80, 17);
+        jLabelFormato.setBounds(450, 340, 80, 16);
 
         jLabelFormato1.setText("Formato:");
         jPanel1.add(jLabelFormato1);
-        jLabelFormato1.setBounds(450, 300, 70, 17);
+        jLabelFormato1.setBounds(450, 300, 70, 16);
 
         outFormato.setText("Sin datos.");
         jPanel1.add(outFormato);
-        outFormato.setBounds(530, 300, 290, 17);
+        outFormato.setBounds(530, 300, 290, 16);
 
         outNombre.setText("Sin datos.");
         jPanel1.add(outNombre);
-        outNombre.setBounds(530, 60, 290, 17);
+        outNombre.setBounds(530, 60, 290, 16);
 
         outCedula.setText("Sin datos.");
         jPanel1.add(outCedula);
-        outCedula.setBounds(530, 100, 290, 17);
+        outCedula.setBounds(530, 100, 290, 16);
 
         outDireccion.setText("Sin datos.");
         jPanel1.add(outDireccion);
-        outDireccion.setBounds(530, 140, 290, 17);
+        outDireccion.setBounds(530, 140, 290, 16);
 
         outTelefono.setText("Sin datos.");
         jPanel1.add(outTelefono);
-        outTelefono.setBounds(530, 180, 290, 17);
+        outTelefono.setBounds(530, 180, 290, 16);
 
         outMail.setText("Sin datos.");
         jPanel1.add(outMail);
-        outMail.setBounds(530, 220, 290, 17);
+        outMail.setBounds(530, 220, 290, 16);
 
         outLinkedin.setText("Sin datos.");
         outLinkedin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,15 +170,15 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
         });
         jPanel1.add(outLinkedin);
-        outLinkedin.setBounds(530, 260, 290, 17);
+        outLinkedin.setBounds(530, 260, 290, 16);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(50, 460, 770, 10);
 
         jLabelBuscar.setText("Buscar:");
         jPanel1.add(jLabelBuscar);
-        jLabelBuscar.setBounds(50, 480, 45, 20);
+        jLabelBuscar.setBounds(50, 480, 38, 20);
         jPanel1.add(txtBuscador);
-        txtBuscador.setBounds(100, 480, 220, 23);
+        txtBuscador.setBounds(100, 480, 220, 22);
 
         btnResetear.setText("Resetar");
         btnResetear.addActionListener(new java.awt.event.ActionListener() {
