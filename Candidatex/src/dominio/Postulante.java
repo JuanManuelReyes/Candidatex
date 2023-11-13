@@ -1,0 +1,107 @@
+package dominio;
+
+import java.io.*;
+import java.util.*;
+
+public class Postulante extends Persona implements Serializable {
+
+    private String telefono;
+    private String mail;
+    private String linkedin;
+    private String formato; // remoto, presencial, mixto
+    private Map<Tematica, Integer> conocimientos; // Tematica y nivel
+
+    public Postulante(String nombre, String cedula, String direccion, String telefono, String mail, String linkedin, String formato, Map<Tematica, Integer> conocimientos) {
+        super(nombre, cedula, direccion);
+        this.telefono = telefono;
+        this.mail = mail;
+        this.linkedin = linkedin;
+        this.formato = formato;
+        this.conocimientos = conocimientos;
+    }
+
+    // Métodos para agregar, eliminar y obtener conocimientos
+    public void agregarConocimiento(Tematica tematica, int nivel) {
+        if (nivel >= 1 && nivel <= 10) {
+            conocimientos.put(tematica, nivel);
+        } else {
+            System.out.println("El nivel debe estar entre 1 y 10.");
+        }
+    }
+
+    public void eliminarConocimiento(Tematica tematica) {
+        conocimientos.remove(tematica);
+    }
+
+    public Map<Tematica, Integer> getConocimientos() {
+        return conocimientos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+
+    public void setConocimientos(Map<Tematica, Integer> conocimientos) {
+        this.conocimientos = conocimientos;
+    }
+
+    public List<Entrevista> getEntrevistas(Sistema sistema) {
+        List<Entrevista> entrevistasDelPostulante = new ArrayList<>();
+
+        for (Entrevista entrevista : sistema.getListaEntrevistas()) {
+            if (entrevista.getPostulante().equals(this)) {
+                entrevistasDelPostulante.add(entrevista);
+            }
+        }
+        return entrevistasDelPostulante;
+    }
+
+    public int getNivelEnTema(Tematica tema) {
+        int nivel = 0;
+        if (conocimientos.containsKey(tema)) {
+            nivel = conocimientos.get(tema);
+        }
+        return nivel;
+    }
+    
+    @Override
+    public String toString() {
+        return super.getNombre();
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Postulante{" + "nombre= " + super.getNombre() + ", cédula= " + super.getCedula() + ", telefono=" + telefono + ", mail=" + mail + ", linkedin=" + linkedin + ", formato=" + formato + ", conocimientos=" + conocimientos + '}';
+//    }
+
+    
+
+}
