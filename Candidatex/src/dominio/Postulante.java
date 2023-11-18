@@ -99,16 +99,20 @@ public class Postulante extends Persona implements Serializable {
         return nivel;
     }
     
+    public int getPuntajeUltimaEntrevista(Sistema sistema) {
+        List<Entrevista> entrevistas = getEntrevistas(sistema);
+
+        if (entrevistas.isEmpty()) {
+            return 0; // Si no hay entrevistas, devuelve 0
+        }
+
+        // Encuentra la entrevista con el número más alto, que será la última realizada
+        Entrevista ultimaEntrevista = Collections.max(entrevistas, Comparator.comparing(Entrevista::getNumero));
+        return ultimaEntrevista.getPuntaje();
+    }
+        
     @Override
     public String toString() {
         return super.getNombre();
     }
-
-//    @Override
-//    public String toString() {
-//        return "Postulante{" + "nombre= " + super.getNombre() + ", cédula= " + super.getCedula() + ", telefono=" + telefono + ", mail=" + mail + ", linkedin=" + linkedin + ", formato=" + formato + ", conocimientos=" + conocimientos + '}';
-//    }
-
-    
-
 }

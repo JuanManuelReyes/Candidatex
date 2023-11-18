@@ -166,6 +166,14 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
                 arraylistPostAptos.add(postulante);
             }
         }
+
+        Collections.sort(arraylistPostAptos, new Comparator<Postulante>() {
+            @Override
+            public int compare(Postulante p1, Postulante p2) {
+                return Integer.compare(p2.getPuntajeUltimaEntrevista(modelo), p1.getPuntajeUltimaEntrevista(modelo));
+            }
+        });
+        
         cargarPostulantes();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -182,10 +190,11 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
             return;
         }
 
-        List<Postulante> postulantesAExportar = listPostulantes.getSelectedValuesList();
+        // En lugar de usar getSelectedValuesList(), usa arraylistPostAptos directamente
+        List<Postulante> postulantesAExportar = new ArrayList<>(arraylistPostAptos);
 
         try {
-            ArchivoGrabacion archivoGrabacion = new ArchivoGrabacion("Consulta.txt", true);
+            ArchivoGrabacion archivoGrabacion = new ArchivoGrabacion("Consulta.txt", false);
 
             archivoGrabacion.grabarLinea(puestoSeleccionado.getNombre());
 
