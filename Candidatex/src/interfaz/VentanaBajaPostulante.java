@@ -29,7 +29,7 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
         listaPostulantes = new javax.swing.JList();
         jLabelPostulantes = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        btnAceptar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -42,16 +42,16 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
         jLabelTitulo.setToolTipText("");
         jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(120, 10, 235, 33);
+        jLabelTitulo.setBounds(110, 10, 235, 33);
 
         jScrollPane2.setViewportView(listaPostulantes);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(80, 90, 320, 260);
+        jScrollPane2.setBounds(60, 90, 340, 260);
 
         jLabelPostulantes.setText("Postulantes:");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(80, 60, 90, 17);
+        jLabelPostulantes.setBounds(60, 60, 90, 16);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,21 +60,21 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
             }
         });
         jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(230, 360, 78, 23);
+        btnEliminar.setBounds(210, 360, 90, 23);
 
-        btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar);
-        btnAceptar.setBounds(320, 360, 78, 23);
+        jPanel1.add(btnCerrar);
+        btnCerrar.setBounds(308, 360, 90, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 400);
+        jPanel1.setBounds(0, 0, 450, 420);
 
-        setBounds(450, 200, 470, 428);
+        setBounds(450, 200, 466, 428);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -86,17 +86,19 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
                 modelo.eliminarPostulante(post);
                 cargarLista();
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un postulante a eliminar.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
     public void cargarLista() {
         listaPostulantes.setListData(modelo.getListaPostulantes().toArray());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabelPostulantes;
     private javax.swing.JLabel jLabelTitulo;

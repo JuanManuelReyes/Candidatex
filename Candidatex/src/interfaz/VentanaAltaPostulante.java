@@ -58,7 +58,7 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
 
         jLabelNombre.setText("Nombre:");
         jPanel1.add(jLabelNombre);
-        jLabelNombre.setBounds(50, 60, 70, 17);
+        jLabelNombre.setBounds(50, 60, 70, 16);
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,41 +66,41 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
             }
         });
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(130, 60, 290, 23);
+        txtNombre.setBounds(130, 60, 290, 22);
 
         jLabelCedula.setText("Cédula:");
         jPanel1.add(jLabelCedula);
-        jLabelCedula.setBounds(50, 100, 70, 17);
+        jLabelCedula.setBounds(50, 100, 70, 16);
         jPanel1.add(txtCedula);
-        txtCedula.setBounds(130, 100, 290, 23);
+        txtCedula.setBounds(130, 100, 290, 22);
 
         jLabelDireccion.setText("Dirección:");
         jPanel1.add(jLabelDireccion);
-        jLabelDireccion.setBounds(50, 140, 70, 17);
+        jLabelDireccion.setBounds(50, 140, 70, 16);
         jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(130, 140, 290, 23);
+        txtDireccion.setBounds(130, 140, 290, 22);
 
         jLabelTelefono.setText("Teléfono:");
         jPanel1.add(jLabelTelefono);
-        jLabelTelefono.setBounds(50, 180, 70, 17);
+        jLabelTelefono.setBounds(50, 180, 70, 16);
         jPanel1.add(txtTelefono);
-        txtTelefono.setBounds(130, 180, 290, 23);
+        txtTelefono.setBounds(130, 180, 290, 22);
 
         jLabelMail.setText("Mail:");
         jPanel1.add(jLabelMail);
-        jLabelMail.setBounds(50, 220, 70, 17);
+        jLabelMail.setBounds(50, 220, 70, 16);
         jPanel1.add(txtMail);
-        txtMail.setBounds(130, 220, 290, 23);
+        txtMail.setBounds(130, 220, 290, 22);
 
         jLabelLinkedin.setText("LinkedIn:");
         jPanel1.add(jLabelLinkedin);
-        jLabelLinkedin.setBounds(50, 260, 70, 17);
+        jLabelLinkedin.setBounds(50, 260, 70, 16);
         jPanel1.add(txtLinkedin);
-        txtLinkedin.setBounds(130, 260, 290, 23);
+        txtLinkedin.setBounds(130, 260, 290, 22);
 
         jLabelFormato.setText("Formato:");
         jPanel1.add(jLabelFormato);
-        jLabelFormato.setBounds(50, 300, 70, 17);
+        jLabelFormato.setBounds(50, 300, 70, 16);
 
         groupFormato.add(radioRemoto);
         radioRemoto.setSelected(true);
@@ -125,7 +125,7 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(240, 360, 81, 23);
+        btnCancelar.setBounds(210, 360, 100, 23);
 
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -134,12 +134,12 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
             }
         });
         jPanel1.add(btnSiguiente);
-        btnSiguiente.setBounds(330, 360, 83, 23);
+        btnSiguiente.setBounds(319, 360, 100, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 400);
+        jPanel1.setBounds(0, 0, 450, 420);
 
-        setBounds(450, 200, 470, 428);
+        setBounds(450, 200, 466, 428);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -181,6 +181,7 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
                 linkedin = "https://"+linkedin;
             }
             VentanaSiguienteAltaPostulante vent = new VentanaSiguienteAltaPostulante(modelo, nombre, cedula, direccion, telefono, mail, linkedin, formato);
+            modelo.addObserver(vent);
             vent.setVisible(true);
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed

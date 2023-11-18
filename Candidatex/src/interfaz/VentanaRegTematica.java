@@ -46,11 +46,11 @@ public class VentanaRegTematica extends javax.swing.JFrame {
 
         jLabelNombre.setText("Nombre:");
         jPanel1.add(jLabelNombre);
-        jLabelNombre.setBounds(31, 60, 80, 17);
+        jLabelNombre.setBounds(31, 60, 80, 16);
 
         jLabelDesc.setText("Descripción:");
         jPanel1.add(jLabelDesc);
-        jLabelDesc.setBounds(31, 113, 90, 17);
+        jLabelDesc.setBounds(31, 113, 90, 16);
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +58,7 @@ public class VentanaRegTematica extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(130, 60, 232, 23);
+        txtNombre.setBounds(110, 60, 232, 22);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class VentanaRegTematica extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(190, 261, 81, 23);
+        btnCancelar.setBounds(110, 260, 110, 23);
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,17 +76,17 @@ public class VentanaRegTematica extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(280, 261, 82, 23);
+        btnRegistrar.setBounds(230, 260, 110, 23);
 
         jScrollPane1.setViewportView(txtDescripcion);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(130, 113, 230, 130);
+        jScrollPane1.setBounds(110, 120, 230, 130);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 400, 300);
+        jPanel1.setBounds(0, 0, 380, 320);
 
-        setBounds(450, 200, 400, 328);
+        setBounds(450, 200, 396, 328);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

@@ -27,6 +27,8 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
         modelo = sistema;
 
         cargarCombo();
+
+        actualizarEstadoBotonRegistrar();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,7 +86,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(270, 100, 72, 23);
+        btnAgregar.setBounds(260, 100, 80, 23);
 
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 70));
         jPanel1.add(jSeparator1);
@@ -102,7 +104,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
         jScrollPane1.setViewportView(listaExperiencia);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(150, 170, 261, 170);
+        jScrollPane1.setBounds(150, 170, 260, 170);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +113,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(60, 190, 73, 23);
+        btnEliminar.setBounds(60, 190, 80, 23);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(240, 360, 76, 23);
+        btnCancelar.setBounds(200, 360, 100, 23);
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,31 +131,36 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(330, 360, 76, 23);
+        btnRegistrar.setBounds(306, 360, 100, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 400);
+        jPanel1.setBounds(0, 0, 450, 420);
 
-        setBounds(450, 200, 470, 428);
+        setBounds(450, 200, 466, 428);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Tematica tematica = (Tematica) comboTema.getSelectedItem();
+
         int nivelValue = (int) spnNivel.getValue();
 
         boolean experienciaExistente = false;
 
-        for (Tematica key : exp.keySet()) {
-            if (key.equals(tematica)) {
-                experienciaExistente = true;
+        if (comboTema.getSelectedItem() != null) {
+            Tematica tematica = (Tematica) comboTema.getSelectedItem();
+            for (Tematica key : exp.keySet()) {
+                if (key.equals(tematica)) {
+                    experienciaExistente = true;
+                }
             }
-        }
 
-        if (experienciaExistente) {
-            System.out.println("ERROR: La experiencia ya existe en la lista.");
+            if (experienciaExistente) {
+                System.out.println("ERROR: La experiencia ya existe en la lista.");
+            } else {
+                exp.put(tematica, nivelValue);
+                cargarLista();
+            }
         } else {
-            exp.put(tematica, nivelValue);
-            cargarLista();
+            JOptionPane.showMessageDialog(null, "Debes crear una Temática antes de registrar un postulante.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -162,20 +169,27 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String enLista = listaExperiencia.getSelectedValue().toString();
-        int pos = enLista.indexOf(" (");
-        String nombreTematica = enLista.substring(0, pos);
-        Tematica selected = null;
 
-        for (Map.Entry<Tematica, Integer> entry : exp.entrySet()) {
-            if (entry.getKey().getNombre().equals(nombreTematica)) {
-                selected = entry.getKey();
+        if (listaExperiencia.getSelectedValue() != null) {
+            String enLista = listaExperiencia.getSelectedValue().toString();
+            int pos = enLista.indexOf(" (");
+            String nombreTematica = enLista.substring(0, pos);
+            Tematica selected = null;
+
+            for (Map.Entry<Tematica, Integer> entry : exp.entrySet()) {
+                if (entry.getKey().getNombre().equals(nombreTematica)) {
+                    selected = entry.getKey();
+                }
             }
-        }
 
-        if (selected != null) {
-            exp.remove(selected);
-            cargarLista();
+            System.out.println(selected);
+
+            if (selected != null) {
+                exp.remove(selected);
+                cargarLista();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una temática a eliminar.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -199,13 +213,19 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
             res.add(tema.getNombre() + " (" + nivel + ")");
         }
         listaExperiencia.setListData(res.toArray());
+        actualizarEstadoBotonRegistrar();
     }
 
     public void cargarCombo() {
         ArrayList<Tematica> listaTemas = modelo.getListaTematica();
+        comboTema.removeAllItems();
         for (Tematica elem : listaTemas) {
             comboTema.addItem(elem);
         }
+    }
+
+    private void actualizarEstadoBotonRegistrar() {
+        btnRegistrar.setEnabled(listaExperiencia.getModel().getSize() > 0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

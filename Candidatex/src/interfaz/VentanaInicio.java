@@ -39,11 +39,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabelTitulo.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("¡Bienvenido a JuanmaElMasLindo.exe!");
+        jLabelTitulo.setText("¡Bienvenido a Candidatex!");
         jLabelTitulo.setToolTipText("");
         jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(20, 10, 370, 33);
+        jLabelTitulo.setBounds(20, 10, 340, 33);
 
         btnAbrirArchivo.setText("Abrir desde archivo");
         btnAbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAbrirArchivo);
-        btnAbrirArchivo.setBounds(120, 140, 160, 23);
+        btnAbrirArchivo.setBounds(110, 140, 160, 23);
 
         btnNuevoSistema.setText("Nuevo sistema");
         btnNuevoSistema.addActionListener(new java.awt.event.ActionListener() {
@@ -61,12 +61,12 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoSistema);
-        btnNuevoSistema.setBounds(120, 100, 160, 23);
+        btnNuevoSistema.setBounds(110, 100, 160, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 400, 300);
+        jPanel1.setBounds(0, 0, 380, 320);
 
-        setBounds(500, 200, 400, 328);
+        setBounds(500, 200, 396, 328);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirArchivoActionPerformed

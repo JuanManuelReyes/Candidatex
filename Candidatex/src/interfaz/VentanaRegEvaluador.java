@@ -51,23 +51,23 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
 
         jLabelNombre.setText("Nombre:");
         jPanel1.add(jLabelNombre);
-        jLabelNombre.setBounds(40, 60, 70, 17);
+        jLabelNombre.setBounds(40, 60, 70, 16);
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(150, 60, 200, 23);
+        txtNombre.setBounds(150, 60, 200, 22);
 
         jLabelCedula.setText("Cédula:");
         jPanel1.add(jLabelCedula);
-        jLabelCedula.setBounds(40, 100, 70, 17);
+        jLabelCedula.setBounds(40, 100, 70, 16);
         jPanel1.add(txtCedula);
-        txtCedula.setBounds(150, 100, 200, 23);
+        txtCedula.setBounds(150, 100, 200, 22);
 
         jLabelDireccion.setText("Dirección:");
         jPanel1.add(jLabelDireccion);
-        jLabelDireccion.setBounds(40, 140, 80, 17);
+        jLabelDireccion.setBounds(40, 140, 80, 16);
 
         jLabelDireccion1.setText("Año de ingreso:");
         jPanel1.add(jLabelDireccion1);
-        jLabelDireccion1.setBounds(40, 180, 110, 17);
+        jLabelDireccion1.setBounds(40, 180, 110, 16);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(180, 220, 81, 23);
+        btnCancelar.setBounds(150, 220, 100, 23);
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,25 +85,25 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(270, 220, 82, 23);
+        btnRegistrar.setBounds(256, 220, 100, 23);
         jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(150, 140, 200, 23);
+        txtDireccion.setBounds(150, 140, 200, 22);
 
         jPanel1.add(comboFecha);
-        comboFecha.setBounds(150, 180, 200, 23);
+        comboFecha.setBounds(150, 180, 200, 22);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 400, 260);
+        jPanel1.setBounds(0, 0, 380, 280);
 
-        setBounds(450, 200, 400, 288);
+        setBounds(450, 200, 396, 288);
     }// </editor-fold>//GEN-END:initComponents
 
     public void cargarComboFechas() {
         int añoActual = LocalDate.now().getYear();
-        int añoInicio = 1990;
+        int añoInicio = 1950;
         comboFecha.removeAllItems();
 
-        for (int año = añoActual; año >= añoInicio; año--) {
+        for (int año = añoActual-1; año >= añoInicio; año--) {
             comboFecha.addItem(String.valueOf(año));
         }
     }

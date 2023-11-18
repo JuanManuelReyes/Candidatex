@@ -11,7 +11,7 @@ import dominio.*;
 import java.util.*;
 import javax.swing.*;
 
-public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
+public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
 
     public VentanaRegPuesto(Sistema sistema) {
         initComponents();
@@ -64,7 +64,7 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
 
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Remoto", "Presencial", "Mixto" }));
         jPanel1.add(comboTipo);
-        comboTipo.setBounds(170, 100, 190, 23);
+        comboTipo.setBounds(170, 100, 190, 22);
 
         jLabelTipo.setText("Tipo:");
         jPanel1.add(jLabelTipo);
@@ -76,7 +76,7 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
             }
         });
         jPanel1.add(txtNombrePuesto);
-        txtNombrePuesto.setBounds(172, 60, 190, 23);
+        txtNombrePuesto.setBounds(172, 60, 190, 22);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
             }
         });
         jPanel1.add(btnRegistrar);
-        btnRegistrar.setBounds(280, 390, 82, 23);
+        btnRegistrar.setBounds(256, 390, 100, 23);
 
         listaTemasFinales.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -104,12 +104,12 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
         jScrollPane1.setViewportView(listaTemasFinales);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(170, 260, 190, 100);
+        jScrollPane1.setBounds(150, 260, 210, 100);
 
         jScrollPane2.setViewportView(listaTemas);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(170, 140, 190, 100);
+        jScrollPane2.setBounds(150, 140, 210, 100);
 
         btnCancelar1.setText("Cancelar");
         btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
             }
         });
         jPanel1.add(btnCancelar1);
-        btnCancelar1.setBounds(190, 390, 81, 23);
+        btnCancelar1.setBounds(150, 390, 100, 23);
 
         jLabelTemas1.setText("Temas disponibles:");
         jPanel1.add(jLabelTemas1);
@@ -134,9 +134,9 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
         btnEliminar.setBounds(30, 290, 81, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 400, 430);
+        jPanel1.setBounds(0, 0, 380, 450);
 
-        setBounds(450, 200, 400, 458);
+        setBounds(450, 200, 396, 458);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombrePuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePuestoActionPerformed
@@ -144,13 +144,17 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_txtNombrePuestoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Tematica tema = (Tematica) listaTemas.getSelectedValue();
+        if (listaTemas.getSelectedValue()!=null) {
+            Tematica tema = (Tematica) listaTemas.getSelectedValue();
 
-        if (requeridos.contains(tema)) {
-            System.out.println("YA ESTÁ EL TEMA");
-        } else {
-            requeridos.add(tema);
-            cargarLista();
+            if (requeridos.contains(tema)) {
+                JOptionPane.showMessageDialog(null, "Temática ya agregada.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                requeridos.add(tema);
+                cargarLista();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una temática.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -178,13 +182,17 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        Tematica selected = (Tematica) listaTemasFinales.getSelectedValue();
-        for (Tematica elem : requeridos) {
-            if (elem.equals(selected)) {
-                requeridos.remove(elem);
-                cargarLista();
-                break;
+        if (listaTemasFinales.getSelectedValue() != null) {
+            Tematica selected = (Tematica) listaTemasFinales.getSelectedValue();
+            for (Tematica elem : requeridos) {
+                if (elem.equals(selected)) {
+                    requeridos.remove(elem);
+                    cargarLista();
+                    break;
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un tema a eliminar.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

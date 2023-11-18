@@ -55,39 +55,39 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
         jScrollPane2.setViewportView(listaEvaluador);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(50, 90, 160, 210);
+        jScrollPane2.setBounds(40, 90, 160, 210);
 
         jLabelPountaje.setText("Puntaje:");
         jPanel1.add(jLabelPountaje);
-        jLabelPountaje.setBounds(50, 550, 90, 20);
+        jLabelPountaje.setBounds(40, 570, 90, 20);
 
         jScrollPane3.setViewportView(listaPostulantes);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(260, 90, 160, 210);
+        jScrollPane3.setBounds(250, 90, 160, 210);
 
         jLabelPostulantes.setText("Postulantes:");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(260, 60, 90, 17);
+        jLabelPostulantes.setBounds(250, 60, 90, 16);
 
         jLabelComentarios.setText("Comentarios:");
         jPanel1.add(jLabelComentarios);
-        jLabelComentarios.setBounds(50, 320, 90, 17);
+        jLabelComentarios.setBounds(40, 320, 90, 16);
 
         spnPuntaje.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         jPanel1.add(spnPuntaje);
-        spnPuntaje.setBounds(120, 550, 68, 23);
+        spnPuntaje.setBounds(110, 570, 67, 22);
 
         jLabelEvaluador.setText("Evaluador:");
         jPanel1.add(jLabelEvaluador);
-        jLabelEvaluador.setBounds(50, 60, 90, 17);
+        jLabelEvaluador.setBounds(40, 60, 90, 16);
 
         txtComentarios.setColumns(20);
         txtComentarios.setRows(5);
         jScrollPane1.setViewportView(txtComentarios);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 350, 370, 180);
+        jScrollPane1.setBounds(40, 350, 370, 200);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +96,7 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(250, 550, 81, 23);
+        btnCancelar.setBounds(200, 570, 100, 23);
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,12 +105,12 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
             }
         });
         jPanel1.add(btnIngresar);
-        btnIngresar.setBounds(340, 550, 76, 23);
+        btnIngresar.setBounds(310, 570, 100, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 600);
+        jPanel1.setBounds(0, 0, 450, 650);
 
-        setBounds(450, 200, 470, 628);
+        setBounds(450, 200, 466, 658);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

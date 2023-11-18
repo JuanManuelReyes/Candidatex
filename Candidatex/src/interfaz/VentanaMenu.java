@@ -34,10 +34,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         ventConsPuesto = new javax.swing.JMenuItem();
         ventHistPostulantes = new javax.swing.JMenuItem();
         ventBajaPostulante = new javax.swing.JMenuItem();
-        menuAyuda = new javax.swing.JMenu();
-        opcionAyuda = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        debug = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -47,7 +43,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        menuArchivo.setText("Crear");
+        menuArchivo.setText("Ingresar");
 
         newTematica.setText("Temática");
         newTematica.addActionListener(new java.awt.event.ActionListener() {
@@ -127,35 +123,10 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuVentana);
 
-        menuAyuda.setText("Ayuda");
-
-        opcionAyuda.setText("¯\\_(ツ)_/¯");
-        opcionAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcionAyudaActionPerformed(evt);
-            }
-        });
-        menuAyuda.add(opcionAyuda);
-        menuAyuda.add(jSeparator1);
-
-        debug.setText("DeBug");
-        debug.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                debugActionPerformed(evt);
-            }
-        });
-        menuAyuda.add(debug);
-
-        jMenuBar1.add(menuAyuda);
-
         setJMenuBar(jMenuBar1);
 
         setBounds(300, 100, 800, 628);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void opcionAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionAyudaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opcionAyudaActionPerformed
 
     private void newPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPuestoActionPerformed
         VentanaRegPuesto vent = new VentanaRegPuesto(modelo);
@@ -208,14 +179,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         vent.setVisible(true);
     }//GEN-LAST:event_ventBajaPostulanteActionPerformed
 
-    private void debugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugActionPerformed
-        System.out.println(modelo.getListaTematica());
-        System.out.println(modelo.getListaPostulantes());
-        System.out.println(modelo.getListaPuestos());
-        System.out.println(modelo.getListaEntrevistas());
-        System.out.println(modelo.getListaEvaluador());
-    }//GEN-LAST:event_debugActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
             FileOutputStream arch = new FileOutputStream("DATOS");
@@ -231,18 +194,14 @@ public class VentanaMenu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem debug;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu menuArchivo;
-    private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuVentana;
     private javax.swing.JMenuItem newEntrevista;
     private javax.swing.JMenuItem newEvaluador;
     private javax.swing.JMenuItem newPostulante;
     private javax.swing.JMenuItem newPuesto;
     private javax.swing.JMenuItem newTematica;
-    private javax.swing.JMenuItem opcionAyuda;
     private javax.swing.JMenuItem ventBajaPostulante;
     private javax.swing.JMenuItem ventConsPuesto;
     private javax.swing.JMenuItem ventConsTematica;

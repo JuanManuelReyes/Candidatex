@@ -113,34 +113,34 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
         jLabelTitulo.setToolTipText("");
         jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(120, 10, 235, 33);
+        jLabelTitulo.setBounds(110, 10, 235, 33);
 
         jScrollPane1.setViewportView(listaTematicas);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 90, 350, 130);
+        jScrollPane1.setBounds(50, 90, 350, 130);
 
         jLabelTematicas.setText("Temáticas:");
         jPanel1.add(jLabelTematicas);
-        jLabelTematicas.setBounds(60, 60, 80, 17);
+        jLabelTematicas.setBounds(50, 60, 80, 16);
 
         jScrollPane2.setViewportView(listaPostulantes);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(60, 300, 160, 160);
+        jScrollPane2.setBounds(50, 300, 160, 160);
 
         jLabelPostNivel.setText("(nivel mayor a 5)");
         jPanel1.add(jLabelPostNivel);
-        jLabelPostNivel.setBounds(60, 280, 160, 17);
+        jLabelPostNivel.setBounds(50, 280, 160, 16);
 
         jScrollPane3.setViewportView(listaPuestos);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(250, 300, 160, 160);
+        jScrollPane3.setBounds(240, 300, 160, 160);
 
         jLabelPuestos.setText("Puestos:");
         jPanel1.add(jLabelPuestos);
-        jLabelPuestos.setBounds(250, 257, 80, 17);
+        jLabelPuestos.setBounds(240, 260, 80, 16);
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -149,18 +149,18 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
             }
         });
         jPanel1.add(btnSalir);
-        btnSalir.setBounds(330, 480, 78, 23);
+        btnSalir.setBounds(320, 480, 78, 23);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(60, 250, 350, 10);
+        jSeparator1.setBounds(50, 250, 350, 10);
 
         jLabelPostulantes.setText("Postulantes: ");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(60, 260, 160, 17);
+        jLabelPostulantes.setBounds(50, 260, 160, 16);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 520);
+        jPanel1.setBounds(0, 0, 450, 540);
 
-        setBounds(450, 200, 470, 548);
+        setBounds(450, 200, 466, 548);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

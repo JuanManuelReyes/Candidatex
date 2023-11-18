@@ -71,20 +71,20 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
 
         jLabelNivel.setText("Nivel:");
         jPanel1.add(jLabelNivel);
-        jLabelNivel.setBounds(60, 250, 50, 20);
+        jLabelNivel.setBounds(50, 250, 50, 20);
 
         jScrollPane1.setViewportView(listaPuestos);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 90, 350, 130);
+        jScrollPane1.setBounds(50, 90, 350, 130);
 
         jLabelPuestos.setText("Puestos:");
         jPanel1.add(jLabelPuestos);
-        jLabelPuestos.setBounds(60, 60, 70, 17);
+        jLabelPuestos.setBounds(50, 60, 70, 16);
 
         spnNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         jPanel1.add(spnNivel);
-        spnNivel.setBounds(100, 250, 64, 23);
+        spnNivel.setBounds(90, 250, 64, 22);
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,20 +93,20 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
             }
         });
         jPanel1.add(btnConsultar);
-        btnConsultar.setBounds(308, 250, 100, 23);
+        btnConsultar.setBounds(300, 250, 100, 23);
 
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 70));
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(50, 290, 370, 10);
+        jSeparator1.setBounds(40, 290, 370, 10);
 
         jScrollPane2.setViewportView(listPostulantes);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(60, 340, 350, 130);
+        jScrollPane2.setBounds(50, 340, 350, 130);
 
         jLabelPostulantes.setText("Postulantes:");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(60, 310, 90, 17);
+        jLabelPostulantes.setBounds(50, 310, 90, 16);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(220, 500, 90, 23);
+        btnCancelar.setBounds(210, 500, 90, 23);
 
         btnExportar.setText("Exportar");
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,12 +124,12 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
             }
         });
         jPanel1.add(btnExportar);
-        btnExportar.setBounds(320, 500, 90, 23);
+        btnExportar.setBounds(310, 500, 90, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 560);
+        jPanel1.setBounds(0, 0, 450, 580);
 
-        setBounds(450, 200, 470, 588);
+        setBounds(450, 200, 466, 588);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
