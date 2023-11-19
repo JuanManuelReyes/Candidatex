@@ -61,6 +61,14 @@ public class Entrevista implements Serializable{
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
+    
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int valor) {
+        contador = valor;
+    }
 
     @Override
     public String toString() {

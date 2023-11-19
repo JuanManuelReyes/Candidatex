@@ -184,6 +184,7 @@ public class VentanaMenu extends javax.swing.JFrame {
             FileOutputStream arch = new FileOutputStream("DATOS");
             ObjectOutputStream salida = new ObjectOutputStream(arch);
             salida.writeObject(modelo);
+            salida.writeInt(Entrevista.getContador());
             salida.close();
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Se creó el archivo de guardado DATOS.", "Alerta", JOptionPane.WARNING_MESSAGE);

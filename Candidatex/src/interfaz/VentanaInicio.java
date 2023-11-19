@@ -69,7 +69,12 @@ public class VentanaInicio extends javax.swing.JFrame {
             FileInputStream arch = new FileInputStream("DATOS");
             ObjectInputStream entrada = new ObjectInputStream(arch);
             modelo = (Sistema) entrada.readObject();
+
+            int contadorGuardado = entrada.readInt();
+            Entrevista.setContador(contadorGuardado);
+
             entrada.close();
+
             dispose();
             VentanaMenu test = new VentanaMenu(modelo);
             test.setVisible(true);
