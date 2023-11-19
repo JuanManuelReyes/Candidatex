@@ -54,12 +54,9 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
 
             limpiarListas();
 
-            // Compute statistics based on selectedTematica
             int postulantesCount = 0;
             int puestosCount = 0;
 
-            // I'm making assumptions on the structure of your Tematica and other classes 
-            // since they're not provided.
             for (Postulante postulante : modelo.getListaPostulantes()) {
                 if (postulante.getNivelEnTema(tematicaSeleccionada) > 5) {
                     postulantesCount++;
@@ -74,8 +71,6 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
                 }
             }
 
-            // Now, update your UI to display these statistics
-            // You can use JLabels or any other component to display these statistics
             jLabelPostulantes.setText("Postulantes: " + postulantesCount);
             jLabelPuestos.setText("Puestos: " + puestosCount);
 

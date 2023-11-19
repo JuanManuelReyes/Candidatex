@@ -340,8 +340,8 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
         limpiarHTML();
         if (!textoBusqueda.isEmpty()) {
-            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3)); // 3 es el índice de la columna de comentarios
-            // Resaltar el texto buscado en rojo
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3));
+
             for (int i = 0; i < tblBuscador.getRowCount(); i++) {
                 String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
                 comentario = comentario.replaceAll("(?i)(" + textoBusqueda + ")", "<font color='red'>$1</font>");
@@ -349,7 +349,7 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
         } else {
             sorter.setRowFilter(null);
-            // Quitar el texto resaltado
+
             for (int i = 0; i < tblBuscador.getRowCount(); i++) {
                 String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
                 comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
@@ -365,7 +365,6 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) tblBuscador.getRowSorter();
         sorter.setRowFilter(null);
         
-        // Quitar el texto resaltado
         for (int i = 0; i < tblBuscador.getRowCount(); i++) {
             String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
             comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
@@ -376,39 +375,32 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
     }//GEN-LAST:event_btnResetearActionPerformed
     
     private void limpiarHTML(){
-        // Obtener el TableRowSorter asociado con tblBuscador
         TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) tblBuscador.getRowSorter();
 
-        // Quitar cualquier filtro existente (si es necesario)
         sorter.setRowFilter(null);
 
-        // Iterar sobre cada fila de la tabla
         for (int i = 0; i < tblBuscador.getRowCount(); i++) {
-            // Obtener el comentario (contenido de la tercera columna) de la fila actual
             String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
 
-            // Eliminar las etiquetas HTML del comentario
             comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
                                    .replaceAll("<font color='red'>", "").replaceAll("</font>", "");
 
-            // Actualizar el comentario en la tabla
             sorter.getModel().setValueAt(comentario, sorter.convertRowIndexToModel(i), 3);
         }
 
-        // Repintar la tabla para reflejar los cambios
         tblBuscador.repaint();
     }
     private void cargarEntrevistas(Postulante postulante, Sistema modelo) {
         DefaultTableModel tableModel = (DefaultTableModel) tblBuscador.getModel();
-        tableModel.setRowCount(0); // Limpia la tabla
+        tableModel.setRowCount(0);
 
         List<Entrevista> entrevistas = postulante.getEntrevistas(modelo);
-        Collections.sort(entrevistas, Comparator.comparingInt(Entrevista::getNumero)); // Ordena las entrevistas
+        Collections.sort(entrevistas, Comparator.comparingInt(Entrevista::getNumero));
 
         for (Entrevista entrevista : entrevistas) {
             Object[] rowData = new Object[]{
                 entrevista.getNumero(),
-                entrevista.getEvaluador().getNombre(), // Asume que Evaluador tiene un método getNombre()
+                entrevista.getEvaluador().getNombre(),
                 entrevista.getPuntaje(),
                 entrevista.getComentarios()
             };
@@ -418,9 +410,8 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
     private void resetearTabla() {
         DefaultTableModel currentModel = (DefaultTableModel) tblBuscador.getModel();
-        currentModel.setRowCount(0); // Limpia la tabla actual
+        currentModel.setRowCount(0);
 
-        // Restaura el contenido del modelo original en la tabla actual
         for (int i = 0; i < originalTableModel.getRowCount(); i++) {
             Vector rowData = (Vector) originalTableModel.getDataVector().get(i);
             currentModel.addRow(rowData);

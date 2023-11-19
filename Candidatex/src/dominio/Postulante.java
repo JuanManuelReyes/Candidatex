@@ -27,7 +27,6 @@ public class Postulante extends Persona implements Serializable {
         this.conocimientos = conocimientos;
     }
 
-    // Métodos para agregar, eliminar y obtener conocimientos
     public void agregarConocimiento(Tematica tematica, int nivel) {
         if (nivel >= 1 && nivel <= 10) {
             conocimientos.put(tematica, nivel);
@@ -101,14 +100,14 @@ public class Postulante extends Persona implements Serializable {
     
     public int getPuntajeUltimaEntrevista(Sistema sistema) {
         List<Entrevista> entrevistas = getEntrevistas(sistema);
+        int puntaje = 0; 
 
-        if (entrevistas.isEmpty()) {
-            return 0; // Si no hay entrevistas, devuelve 0
+        if (!entrevistas.isEmpty()) {
+            Entrevista ultimaEntrevista = Collections.max(entrevistas, Comparator.comparing(Entrevista::getNumero));
+            puntaje = ultimaEntrevista.getPuntaje();
         }
 
-        // Encuentra la entrevista con el número más alto, que será la última realizada
-        Entrevista ultimaEntrevista = Collections.max(entrevistas, Comparator.comparing(Entrevista::getNumero));
-        return ultimaEntrevista.getPuntaje();
+        return puntaje;
     }
         
     @Override

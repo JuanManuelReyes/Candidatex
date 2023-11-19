@@ -21,14 +21,12 @@ public class Puesto implements Serializable{
         this.temasRequeridos = temasRequeridos;
     }
 
-    // Método para anadir un tema requerido
     public void anadirTemaRequerido(Tematica tema) {
         if (!temasRequeridos.contains(tema)) {
             temasRequeridos.add(tema);
         }
     }
 
-    // Método para eliminar un tema requerido
     public void eliminarTemaRequerido(Tematica tema) {
         temasRequeridos.remove(tema);
     }

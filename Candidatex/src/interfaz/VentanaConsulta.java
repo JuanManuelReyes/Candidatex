@@ -190,7 +190,6 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
             return;
         }
 
-        // En lugar de usar getSelectedValuesList(), usa arraylistPostAptos directamente
         List<Postulante> postulantesAExportar = new ArrayList<>(arraylistPostAptos);
 
         try {
