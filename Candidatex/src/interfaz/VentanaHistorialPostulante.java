@@ -20,12 +20,15 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         initComponents();
         modelo = sistema;
         cargarPostulantes();
+        originalTableModel = (DefaultTableModel) tblBuscador.getModel();
 
         btnBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
+
+        resetearTabla();
     }
 
     private void cargarPostulantes() {
@@ -98,63 +101,63 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
         jLabelPostulantes.setText("Postulantes:");
         jPanel1.add(jLabelPostulantes);
-        jLabelPostulantes.setBounds(50, 60, 90, 17);
+        jLabelPostulantes.setBounds(50, 60, 90, 16);
 
         jLabelNombre.setText("Nombre:");
         jPanel1.add(jLabelNombre);
-        jLabelNombre.setBounds(450, 60, 70, 17);
+        jLabelNombre.setBounds(450, 60, 70, 16);
 
         jLabelCedula.setText("Cédula:");
         jPanel1.add(jLabelCedula);
-        jLabelCedula.setBounds(450, 100, 60, 17);
+        jLabelCedula.setBounds(450, 100, 60, 16);
 
         jLabelDireccion.setText("Dirección:");
         jPanel1.add(jLabelDireccion);
-        jLabelDireccion.setBounds(450, 140, 80, 17);
+        jLabelDireccion.setBounds(450, 140, 80, 16);
 
         jLabelTelefono.setText("Teléfono:");
         jPanel1.add(jLabelTelefono);
-        jLabelTelefono.setBounds(450, 180, 70, 17);
+        jLabelTelefono.setBounds(450, 180, 70, 16);
 
         jLabelMail.setText("Mail:");
         jPanel1.add(jLabelMail);
-        jLabelMail.setBounds(450, 220, 50, 17);
+        jLabelMail.setBounds(450, 220, 50, 16);
 
         jLabelLinkedin.setText("LinkedIn:");
         jPanel1.add(jLabelLinkedin);
-        jLabelLinkedin.setBounds(450, 260, 70, 17);
+        jLabelLinkedin.setBounds(450, 260, 70, 16);
 
         jLabelFormato.setText("Experiencia:");
         jPanel1.add(jLabelFormato);
-        jLabelFormato.setBounds(450, 340, 80, 17);
+        jLabelFormato.setBounds(450, 340, 80, 16);
 
         jLabelFormato1.setText("Formato:");
         jPanel1.add(jLabelFormato1);
-        jLabelFormato1.setBounds(450, 300, 70, 17);
+        jLabelFormato1.setBounds(450, 300, 70, 16);
 
         outFormato.setText("Sin datos.");
         jPanel1.add(outFormato);
-        outFormato.setBounds(530, 300, 290, 17);
+        outFormato.setBounds(530, 300, 290, 16);
 
         outNombre.setText("Sin datos.");
         jPanel1.add(outNombre);
-        outNombre.setBounds(530, 60, 290, 17);
+        outNombre.setBounds(530, 60, 290, 16);
 
         outCedula.setText("Sin datos.");
         jPanel1.add(outCedula);
-        outCedula.setBounds(530, 100, 290, 17);
+        outCedula.setBounds(530, 100, 290, 16);
 
         outDireccion.setText("Sin datos.");
         jPanel1.add(outDireccion);
-        outDireccion.setBounds(530, 140, 290, 17);
+        outDireccion.setBounds(530, 140, 290, 16);
 
         outTelefono.setText("Sin datos.");
         jPanel1.add(outTelefono);
-        outTelefono.setBounds(530, 180, 290, 17);
+        outTelefono.setBounds(530, 180, 290, 16);
 
         outMail.setText("Sin datos.");
         jPanel1.add(outMail);
-        outMail.setBounds(530, 220, 290, 17);
+        outMail.setBounds(530, 220, 290, 16);
 
         outLinkedin.setText("Sin datos.");
         outLinkedin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,15 +166,15 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
         });
         jPanel1.add(outLinkedin);
-        outLinkedin.setBounds(530, 260, 290, 17);
+        outLinkedin.setBounds(530, 260, 290, 16);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(50, 460, 770, 10);
 
         jLabelBuscar.setText("Buscar:");
         jPanel1.add(jLabelBuscar);
-        jLabelBuscar.setBounds(50, 480, 45, 20);
+        jLabelBuscar.setBounds(50, 480, 38, 20);
         jPanel1.add(txtBuscador);
-        txtBuscador.setBounds(100, 480, 220, 23);
+        txtBuscador.setBounds(100, 480, 220, 22);
 
         btnResetear.setText("Resetar");
         btnResetear.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +183,7 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
         });
         jPanel1.add(btnResetear);
-        btnResetear.setBounds(410, 480, 78, 23);
+        btnResetear.setBounds(440, 480, 100, 23);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +192,7 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
         });
         jPanel1.add(btnBuscar);
-        btnBuscar.setBounds(330, 480, 72, 23);
+        btnBuscar.setBounds(330, 480, 100, 23);
 
         tblBuscador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -235,9 +238,9 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         btnSalir.setBounds(750, 920, 72, 23);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 870, 960);
+        jPanel1.setBounds(0, 0, 850, 980);
 
-        setBounds(300, 200, 870, 988);
+        setBounds(300, 200, 866, 988);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblBuscadorComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblBuscadorComponentResized
@@ -249,26 +252,54 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void listaPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaPostulantesValueChanged
-        Postulante selected = null;
-        String selectedPost = listaPostulantes.getSelectedValue().toString();
-        int posIni = selectedPost.indexOf(" (");
-        int posEnd = selectedPost.indexOf(")");
-        String selectedCedula = selectedPost.substring(posIni + 2, posEnd);
-        ArrayList<Postulante> list = modelo.getListaPostulantes();
+        mostrarDatos();
+    }//GEN-LAST:event_listaPostulantesValueChanged
 
-        for (Postulante post : list) {
-            if (selectedCedula.equals(post.getCedula())) {
-                selected = post;
+    public void mostrarDatos() {
+        ArrayList<String> res = new ArrayList<>();
+        if (listaPostulantes.getSelectedValue() != null) {
+            Postulante selected = null;
+            String selectedPost = listaPostulantes.getSelectedValue().toString();
+            int posIni = selectedPost.indexOf(" (");
+            int posEnd = selectedPost.indexOf(")");
+            String selectedCedula = selectedPost.substring(posIni + 2, posEnd);
+            ArrayList<Postulante> list = modelo.getListaPostulantes();
+
+            for (Postulante post : list) {
+                if (selectedCedula.equals(post.getCedula())) {
+                    selected = post;
+                }
             }
-        }
 
-        outNombre.setText(selected.getNombre());
-        outCedula.setText(selected.getCedula());
-        outDireccion.setText(selected.getDireccion());
-        outTelefono.setText(selected.getTelefono());
-        outMail.setText(selected.getMail());
-        outLinkedin.setText(selected.getLinkedin());
-        outFormato.setText(selected.getFormato());
+            outNombre.setText(selected.getNombre());
+            outCedula.setText(selected.getCedula());
+            outDireccion.setText(selected.getDireccion());
+            outTelefono.setText(selected.getTelefono());
+            outMail.setText(selected.getMail());
+            outLinkedin.setText(selected.getLinkedin());
+            outFormato.setText(selected.getFormato());
+
+            Map<Tematica, Integer> mapExp = selected.getConocimientos();
+            for (Map.Entry<Tematica, Integer> entry : mapExp.entrySet()) {
+                Tematica tema = entry.getKey();
+                Integer nivel = entry.getValue();
+                res.add(tema.getNombre() + " (" + nivel + ")");
+            }
+            outListaExp.setListData(res.toArray());
+
+            cargarEntrevistas(selected, modelo);
+        } else {
+            outNombre.setText("Sin datos.");
+            outCedula.setText("Sin datos.");
+            outDireccion.setText("Sin datos.");
+            outTelefono.setText("Sin datos.");
+            outMail.setText("Sin datos.");
+            outLinkedin.setText("Sin datos.");
+            outFormato.setText("Sin datos.");
+            res.clear();
+            outListaExp.setListData(res.toArray());
+            resetearTabla();
+        }
 
         if (!"Sin datos.".equals(outLinkedin.getText())) {
             Font font = outLinkedin.getFont();
@@ -277,36 +308,32 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);
             outLinkedin.setFont(font.deriveFont(attributes));
             outLinkedin.setForeground(blue);
+        } else {
+            Font font = outLinkedin.getFont();
+            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+            attributes.put(TextAttribute.UNDERLINE, null);
+            attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);
+            outLinkedin.setFont(font.deriveFont(attributes));
+            outLinkedin.setForeground(null);
         }
-
-        ArrayList<String> res = new ArrayList<>();
-        Map<Tematica, Integer> mapExp = selected.getConocimientos();
-        for (Map.Entry<Tematica, Integer> entry : mapExp.entrySet()) {
-            Tematica tema = entry.getKey();
-            Integer nivel = entry.getValue();
-            res.add(tema.getNombre() + " (" + nivel + ")");
-        }
-        outListaExp.setListData(res.toArray());
-
-        cargarEntrevistas(selected, modelo);
-    }//GEN-LAST:event_listaPostulantesValueChanged
+    }
 
     private void outLinkedinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outLinkedinMouseClicked
         String linkedinURL = outLinkedin.getText();
-        try {
-            Desktop.getDesktop().browse(new URI(linkedinURL));
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (linkedinURL.startsWith("https://")) {
+            try {
+                Desktop.getDesktop().browse(new URI(linkedinURL));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }//GEN-LAST:event_outLinkedinMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String textoBusqueda = txtBuscador.getText().toLowerCase();
         if (textoBusqueda.isEmpty()) {
-            // Si el campo de búsqueda está vacío, no filtrar nada
             ((TableRowSorter) tblBuscador.getRowSorter()).setRowFilter(null);
         } else {
-            // Configurar el filtro para que solo se muestren filas con comentarios que contienen el textoBusqueda
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tblBuscador.getModel());
             tblBuscador.setRowSorter(sorter);
             RowFilter<DefaultTableModel, Object> rf = RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3); // 3 es el índice de la columna de comentarios
@@ -334,6 +361,17 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
                 entrevista.getComentarios()
             };
             tableModel.addRow(rowData);
+        }
+    }
+
+    private void resetearTabla() {
+        DefaultTableModel currentModel = (DefaultTableModel) tblBuscador.getModel();
+        currentModel.setRowCount(0); // Limpia la tabla actual
+
+        // Restaura el contenido del modelo original en la tabla actual
+        for (int i = 0; i < originalTableModel.getRowCount(); i++) {
+            Vector rowData = (Vector) originalTableModel.getDataVector().get(i);
+            currentModel.addRow(rowData);
         }
     }
 
@@ -370,9 +408,11 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
     private javax.swing.JTextField txtBuscador;
     // End of variables declaration//GEN-END:variables
     private Sistema modelo;
+    private DefaultTableModel originalTableModel;
 
     @Override
     public void update(Observable o, Object arg) {
         cargarPostulantes();
+        resetearTabla();
     }
 }
