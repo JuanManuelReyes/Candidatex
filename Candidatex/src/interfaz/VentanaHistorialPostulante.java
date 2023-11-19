@@ -331,14 +331,38 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String textoBusqueda = txtBuscador.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) tblBuscador.getModel();
+
         if (textoBusqueda.isEmpty()) {
+            // Restaurar el texto original de los comentarios y quitar el filtro
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String comentarios = model.getValueAt(i, 3).toString();
+                comentarios = comentarios.replaceAll("<font color='red'>", "").replaceAll("</font>", "");
+                model.setValueAt(comentarios, i, 3);
+            }
             ((TableRowSorter) tblBuscador.getRowSorter()).setRowFilter(null);
         } else {
+            // Resaltar la palabra buscada y aplicar el filtro
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String comentarios = model.getValueAt(i, 3).toString();
+                comentarios = comentarios.replaceAll("(?i)" + textoBusqueda, "<font color='red'>" + textoBusqueda + "</font>");
+                model.setValueAt(comentarios, i, 3);
+            }
+
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tblBuscador.getModel());
             tblBuscador.setRowSorter(sorter);
             RowFilter<DefaultTableModel, Object> rf = RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3); // 3 es el índice de la columna de comentarios
             sorter.setRowFilter(rf);
-        }
+    }
+//        String textoBusqueda = txtBuscador.getText().toLowerCase();
+//        if (textoBusqueda.isEmpty()) {
+//            ((TableRowSorter) tblBuscador.getRowSorter()).setRowFilter(null);
+//        } else {
+//            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tblBuscador.getModel());
+//            tblBuscador.setRowSorter(sorter);
+//            RowFilter<DefaultTableModel, Object> rf = RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3); // 3 es el índice de la columna de comentarios
+//            sorter.setRowFilter(rf);
+//        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
@@ -354,15 +378,33 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         Collections.sort(entrevistas, Comparator.comparingInt(Entrevista::getNumero)); // Ordena las entrevistas
 
         for (Entrevista entrevista : entrevistas) {
+            String comentariosHTML = "<html>" + entrevista.getComentarios() + "</html>";
             Object[] rowData = new Object[]{
                 entrevista.getNumero(),
                 entrevista.getEvaluador().getNombre(), // Asume que Evaluador tiene un método getNombre()
                 entrevista.getPuntaje(),
-                entrevista.getComentarios()
+                comentariosHTML // Usar HTML para los comentarios
             };
             tableModel.addRow(rowData);
         }
     }
+//    private void cargarEntrevistas(Postulante postulante, Sistema modelo) {
+//        DefaultTableModel tableModel = (DefaultTableModel) tblBuscador.getModel();
+//        tableModel.setRowCount(0); // Limpia la tabla
+//
+//        List<Entrevista> entrevistas = postulante.getEntrevistas(modelo);
+//        Collections.sort(entrevistas, Comparator.comparingInt(Entrevista::getNumero)); // Ordena las entrevistas
+//
+//        for (Entrevista entrevista : entrevistas) {
+//            Object[] rowData = new Object[]{
+//                entrevista.getNumero(),
+//                entrevista.getEvaluador().getNombre(), // Asume que Evaluador tiene un método getNombre()
+//                entrevista.getPuntaje(),
+//                entrevista.getComentarios()
+//            };
+//            tableModel.addRow(rowData);
+//        }
+//    }
 
     private void resetearTabla() {
         DefaultTableModel currentModel = (DefaultTableModel) tblBuscador.getModel();
