@@ -25,7 +25,7 @@ El sistema permite el registro de temáticas, alta y baja de postulantes, regist
 
 ## Diagrama de Clases
 
-![UML](UML_Candidatex.png)
+![UML](UML.png)
 
 ## Proyecto Académico
 
