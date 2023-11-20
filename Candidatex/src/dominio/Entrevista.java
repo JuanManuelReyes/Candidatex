@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Entrevista implements Serializable{
     private static int contador = 0;
-    private final int numero; 
+    private int numero; 
     private Evaluador evaluador;
     private Postulante postulante;
     private int puntaje;

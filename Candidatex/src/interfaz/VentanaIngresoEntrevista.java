@@ -130,7 +130,7 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
         } else {
             Entrevista entrevista = new Entrevista(eva, post, puntaje, comentarios);
             modelo.agregarEntrevista(entrevista);
-            JOptionPane.showMessageDialog(null, "Entrevista registrada correctamente.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Entrevista numero " + entrevista.getNumero() + " registrada correctamente.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
