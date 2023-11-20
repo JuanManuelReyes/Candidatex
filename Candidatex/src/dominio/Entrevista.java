@@ -19,7 +19,7 @@ public class Entrevista implements Serializable{
 
 
     public Entrevista(Evaluador evaluador, Postulante postulante, int puntaje, String comentarios) {
-        this.numero = ++contador;
+        this.numero = ++contador; // Incrementa el contador y lo asigna al numero de entrevista.
         this.evaluador = evaluador;
         this.postulante = postulante;
         this.puntaje = puntaje;
@@ -62,10 +62,12 @@ public class Entrevista implements Serializable{
         this.comentarios = comentarios;
     }
     
+    // Metodo estatico para acceder al contador de entrevistas.
     public static int getContador() {
         return contador;
     }
 
+    // Metodo estatico para modificar el contador de entrevistas.
     public static void setContador(int valor) {
         contador = valor;
     }

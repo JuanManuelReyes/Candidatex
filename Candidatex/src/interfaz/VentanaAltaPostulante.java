@@ -13,7 +13,7 @@ import dominio.*;
 public class VentanaAltaPostulante extends javax.swing.JFrame  {
 
     public VentanaAltaPostulante(Sistema sistema) {
-        modelo = sistema;
+        modelo = sistema; // Sistema de la aplicacion.
         initComponents();
     }
 
@@ -147,6 +147,7 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        // Toma de datos de los campos de texto.
         String nombre = txtNombre.getText();
         String cedula = txtCedula.getText();
         String telefono = txtTelefono.getText();
@@ -162,7 +163,8 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
         } else {
             formato = radioMixto.getText();
         }
-
+        
+        // Validacion de los campos
         if (nombre.isEmpty() || cedula.isEmpty() || telefono.isEmpty() || mail.isEmpty() || linkedin.isEmpty() || direccion.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (modelo.cedulaInvalida(cedula)) {
@@ -182,7 +184,7 @@ public class VentanaAltaPostulante extends javax.swing.JFrame  {
             }
             VentanaSiguienteAltaPostulante vent = new VentanaSiguienteAltaPostulante(modelo, nombre, cedula, direccion, telefono, mail, linkedin, formato);
             modelo.addObserver(vent);
-            vent.setVisible(true);
+            vent.setVisible(true); // Se muestra la ventana siguiente para finalizar el alta.
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

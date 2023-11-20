@@ -16,6 +16,7 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
 
     public VentanaSiguienteAltaPostulante(Sistema sistema, String nombre, String cedula, String direccion, String telefono, String mail, String linkedin, String formato) {
         initComponents();
+        // Inicializacion de las variables con los datos del postulante (obtenidas de la ventana anterior).
         this.nombre = nombre;
         this.cedula = cedula;
         this.direccion = direccion;
@@ -23,8 +24,8 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
         this.mail = mail;
         this.linkedin = linkedin;
         this.formato = formato;
-        exp = new HashMap<>();
-        modelo = sistema;
+        exp = new HashMap<>(); // Hashmap para almacenar la experiencia del postulante.
+        modelo = sistema; // Sistema de la aplicacion.
 
         cargarCombo();
 
@@ -139,20 +140,24 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
         setBounds(450, 200, 466, 428);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metodo para agregar la experiencia del postulante.
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        // Toma el valor del spn.
         int nivelValue = (int) spnNivel.getValue();
 
         boolean experienciaExistente = false;
 
+        // Valida que haya un tema seleccionado.
         if (comboTema.getSelectedItem() != null) {
             Tematica tematica = (Tematica) comboTema.getSelectedItem();
+            // Recorre el hashmap para validar la existencia de la experiencia.
             for (Tematica key : exp.keySet()) {
                 if (key.equals(tematica)) {
                     experienciaExistente = true;
                 }
             }
-
+            
+            // En caso de que no exista se agrega la experiencia.
             if (experienciaExistente) {
                 System.out.println("ERROR: La experiencia ya existe en la lista.");
             } else {
@@ -169,21 +174,21 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        // Verifica que haya una experiencia seleccionada.
         if (listaExperiencia.getSelectedValue() != null) {
             String enLista = listaExperiencia.getSelectedValue().toString();
             int pos = enLista.indexOf(" (");
             String nombreTematica = enLista.substring(0, pos);
             Tematica selected = null;
-
+            
+            // Se establece la experiencia a eliminar
             for (Map.Entry<Tematica, Integer> entry : exp.entrySet()) {
                 if (entry.getKey().getNombre().equals(nombreTematica)) {
                     selected = entry.getKey();
                 }
             }
-
-            System.out.println(selected);
-
+            
+            // En caso de que se haya seleccionado una se elimina.
             if (selected != null) {
                 exp.remove(selected);
                 cargarLista();
@@ -198,18 +203,21 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
     }//GEN-LAST:event_listaExperienciaValueChanged
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // Se crea y se registra el nuevo postulante.
         Postulante post = new Postulante(nombre, cedula, direccion, telefono, mail, linkedin, formato, exp);
         modelo.agregarPostulante(post);
         JOptionPane.showMessageDialog(null, "Postulante registrado correctamente.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-        System.out.println(modelo.getListaPostulantes());
         dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    // Metodo para cargar la lista de experiencia.
     public void cargarLista() {
         ArrayList<String> res = new ArrayList<>();
+        // Recorre el hashmap de experiencias para poder mostrarlo como texto.
         for (Map.Entry<Tematica, Integer> entry : exp.entrySet()) {
-            Tematica tema = entry.getKey();
-            Integer nivel = entry.getValue();
+            Tematica tema = entry.getKey(); // Obtiene la tematica de la experiencia.
+            Integer nivel = entry.getValue(); // Obtiene el nivel en esa tematica.
+            // Formatea el texto para mostrar el nombre de la tematica y el nivel, y la aniade a la lista.
             res.add(tema.getNombre() + " (" + nivel + ")");
         }
         listaExperiencia.setListData(res.toArray());
@@ -217,8 +225,9 @@ public class VentanaSiguienteAltaPostulante extends javax.swing.JFrame implement
     }
 
     public void cargarCombo() {
-        ArrayList<Tematica> listaTemas = modelo.getListaTematica();
-        comboTema.removeAllItems();
+        ArrayList<Tematica> listaTemas = modelo.getListaTematica(); // Obtiene la lista de tematicas del sistema.
+        comboTema.removeAllItems(); // Limpia el combobox para asegurarse de que no haya elementos repetidos.
+        // Recorre la lista de tematicas y agrega cada una como un elemento en el combobox.
         for (Tematica elem : listaTemas) {
             comboTema.addItem(elem);
         }

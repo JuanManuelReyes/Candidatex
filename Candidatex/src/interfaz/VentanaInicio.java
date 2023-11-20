@@ -15,7 +15,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     public VentanaInicio() {
         initComponents();
-        modelo = new Sistema();
+        modelo = new Sistema(); // Sistema de la aplicacion.
     }
 
     @SuppressWarnings("unchecked")
@@ -64,12 +64,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         setBounds(500, 200, 396, 328);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metodo para manejar la accion del boton Abrir Archivo.
     private void btnAbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirArchivoActionPerformed
         try {
+            // Intenta abrir un archivo de datos y cargar el sistema desde el.
             FileInputStream arch = new FileInputStream("DATOS");
             ObjectInputStream entrada = new ObjectInputStream(arch);
             modelo = (Sistema) entrada.readObject();
             
+            // Lee y establece el contador de entrevistas (forma de que persista).
             int contadorGuardado = entrada.readInt();
             Entrevista.setContador(contadorGuardado);
             
@@ -88,7 +91,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirArchivoActionPerformed
 
     private void btnNuevoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSistemaActionPerformed
-        dispose();
+        dispose(); // Cierra la ventana actual y abre la ventana del menú con un nuevo sistema.
         VentanaMenu test = new VentanaMenu(modelo);
         test.setVisible(true);
     }//GEN-LAST:event_btnNuevoSistemaActionPerformed

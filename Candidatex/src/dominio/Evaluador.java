@@ -14,7 +14,7 @@ public class Evaluador extends Persona implements Serializable {
     private int anioIngreso;
 
     public Evaluador(String nombre, String cedula, String direccion, int anioIngreso) {
-        super(nombre, cedula, direccion);
+        super(nombre, cedula, direccion); // Llamada al constructor de la clase padre (Persona).
         this.anioIngreso = anioIngreso;
     }
 

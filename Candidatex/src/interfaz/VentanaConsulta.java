@@ -16,19 +16,22 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
 
     public VentanaConsulta(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        cargarPuestos();
-        arraylistPostAptos = new ArrayList<>();
+        modelo = sistema; // Sistema de la aplicacion.
+        cargarPuestos(); // Carga la lista de puestos en la interfaz.
+        arraylistPostAptos = new ArrayList<>(); // Inicializa la lista de postulantes aptos.
     }
 
+    // Metodo para cargar los postulantes aptos en la interfaz.
     public void cargarPostulantes() {
         listPostulantes.setListData(arraylistPostAptos.toArray());
     }
 
+    // Metodo para limpiar las listas de postulantes.
     public void limpiarListas() {
         arraylistPostAptos.clear();
     }
 
+    // Metodo para cargar los puestos disponibles en la interfaz.
     public void cargarPuestos() {
         DefaultListModel<String> model = new DefaultListModel<>();
         for (Puesto puesto : modelo.getListaPuestos()) {
@@ -140,33 +143,42 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
 
         Puesto puestoSeleccionado = modelo.buscarPuestoPorNombre(nombrePuestoSeleccionado);
 
+        // Valida el puesto seleccionado.
         if (puestoSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "El puesto seleccionado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El puesto seleccionado no existe o no has seleccionado ninguno.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        // Recorre todos los postulantes del sistema.
         for (Postulante postulante : modelo.getListaPostulantes()) {
+            // Verifica si el postulante no tiene entrevistas. Si no tiene, continúa con el siguiente postulante.
             if (postulante.getEntrevistas(modelo).isEmpty()) {
                 continue;
             }
 
+            // Verifica si el formato de trabajo del postulante coincide con el del puesto seleccionado.
             if (!postulante.getFormato().equals(puestoSeleccionado.getTipo())) {
                 continue;
             }
+
             boolean cumpleConNivel = true;
 
+            // Recorre las temáticas requeridas para el puesto seleccionado.
             for (Tematica tema : puestoSeleccionado.getTemasRequeridos()) {
+                // Verifica si el nivel del postulante en la temática es menor que el nivel requerido.
                 if (postulante.getNivelEnTema(tema) < nivelRequerido) {
                     cumpleConNivel = false;
                     break;
                 }
             }
 
+            // Si el postulante cumple con el nivel en todas las temáticas, se añade a la lista de postulantes aptos.
             if (cumpleConNivel) {
                 arraylistPostAptos.add(postulante);
             }
         }
 
+        // Se ordenan los postulantes en orden descendente segun el puntaje de su ultima entrevista.
         Collections.sort(arraylistPostAptos, new Comparator<Postulante>() {
             @Override
             public int compare(Postulante p1, Postulante p2) {
@@ -185,23 +197,29 @@ public class VentanaConsulta extends javax.swing.JFrame implements Observer {
         String nombrePuestoSeleccionado = (String) listaPuestos.getSelectedValue();
         Puesto puestoSeleccionado = modelo.buscarPuestoPorNombre(nombrePuestoSeleccionado);
 
+        // Se valida el puesto seleccionado.
         if (puestoSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "El puesto seleccionado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El puesto seleccionado no existe o no has seleccionado ninguno.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         List<Postulante> postulantesAExportar = new ArrayList<>(arraylistPostAptos);
 
         try {
+            // Se especifica el nombre del archivo y se indica que no se extienda el archivo existente.
             ArchivoGrabacion archivoGrabacion = new ArchivoGrabacion("Consulta.txt", false);
 
+            // Escribe en el archivo el nombre del puesto seleccionado.
             archivoGrabacion.grabarLinea(puestoSeleccionado.getNombre());
 
+            // Itera sobre la lista de postulantes a exportar.
             for (Postulante postulante : postulantesAExportar) {
+                // Escribe el nombre, cédula y correo electrónico del postulante, separados por comas.
                 String linea = postulante.getNombre() + ", " + postulante.getCedula() + ", " + postulante.getMail();
                 archivoGrabacion.grabarLinea(linea);
             }
 
+            // Cierra el archivo de grabación.
             archivoGrabacion.cerrar();
 
             JOptionPane.showMessageDialog(this, "Exportado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);

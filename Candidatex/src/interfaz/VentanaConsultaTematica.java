@@ -15,55 +15,62 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
 
     public VentanaConsultaTematica(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        arraylistPostulantes = new ArrayList<>();
-        arraylistPuestos = new ArrayList<>();
+        modelo = sistema; // Sistema de la aplicacion.
+        arraylistPostulantes = new ArrayList<>(); // Inicializa la lista de postulantes.
+        arraylistPuestos = new ArrayList<>(); // Inicializa la lista de puestos.
 
+        // Agrega un listener para detectar cambios en la seleccion de la lista de tematicas.
         listaTematicas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listaTematicasValueChanged(evt);
+                listaTematicasValueChanged(evt); // Maneja el cambio de seleccion.
             }
         });
 
-        cargarTematicas();
+        cargarTematicas(); // Carga las tematicas disponibles en la interfaz.
     }
 
+    // Metodo para cargar las tematicas en la interfaz.
     public void cargarTematicas() {
         DefaultListModel<String> model = new DefaultListModel<>();
         for (Tematica tema : modelo.getListaTematica()) {
-            model.addElement(tema.getNombre());
+            model.addElement(tema.getNombre()); // Agrega cada tematica a la lista.
         }
-        listaTematicas.setModel(model);
+        listaTematicas.setModel(model); // Establece el modelo en la lista de tematicas.
 
     }
 
+    // Metodo para actualizar las listas de postulantes y puestos en la interfaz.
     public void cargarListas() {
-        listaPostulantes.setListData(arraylistPostulantes.toArray());
-        listaPuestos.setListData(arraylistPuestos.toArray());
+        listaPostulantes.setListData(arraylistPostulantes.toArray()); // Actualiza la lista de postulantes.
+        listaPuestos.setListData(arraylistPuestos.toArray()); // Actualiza la lista de puestos.
     }
 
+    // Método para limpiar las listas de postulantes y puestos.
     public void limpiarListas() {
-        arraylistPostulantes.clear();
-        arraylistPuestos.clear();
+        arraylistPostulantes.clear(); // Limpia la lista de postulantes.
+        arraylistPuestos.clear(); // Limpia la lista de puestos.
     }
 
+    // Metodo que se ejecuta cuando cambia la seleccion en la lista de tematicas.
     private void listaTematicasValueChanged(javax.swing.event.ListSelectionEvent evt) {
-        if (!evt.getValueIsAdjusting()) { // This line prevents double firing
-            String nombreTematicaSeleccioanda = (String) listaTematicas.getSelectedValue();
-            Tematica tematicaSeleccionada = modelo.buscarTematicaPorNombre(nombreTematicaSeleccioanda);
+        if (!evt.getValueIsAdjusting()) { // Evita que el evento se dispare dos veces.
+            String nombreTematicaSeleccioanda = (String) listaTematicas.getSelectedValue(); // Obtiene la tematica seleccionada.
+            Tematica tematicaSeleccionada = modelo.buscarTematicaPorNombre(nombreTematicaSeleccioanda); // Busca la tematica en el sistema.
 
-            limpiarListas();
+            limpiarListas(); // Limpia las listas antes de cargar los nuevos datos.
 
             int postulantesCount = 0;
             int puestosCount = 0;
 
+            // Recorre los postulantes y verifica si cumplen con el nivel en la tematica seleccionada.
             for (Postulante postulante : modelo.getListaPostulantes()) {
                 if (postulante.getNivelEnTema(tematicaSeleccionada) > 5) {
                     postulantesCount++;
                     arraylistPostulantes.add(postulante);
                 }
             }
-
+            
+            // Recorre los puestos y verifica si requieren la tematica seleccionada.
             for (Puesto puesto : modelo.getListaPuestos()) {
                 if (puesto.getTemasRequeridos().contains(tematicaSeleccionada)) {
                     puestosCount++;
@@ -71,10 +78,11 @@ public class VentanaConsultaTematica extends javax.swing.JFrame implements Obser
                 }
             }
 
+            // Actualiza las etiquetas con la cantidad de postulantes y puestos.
             jLabelPostulantes.setText("Postulantes: " + postulantesCount);
             jLabelPuestos.setText("Puestos: " + puestosCount);
 
-            cargarListas();
+            cargarListas(); // Carga las listas actualizadas en la interfaz.
         }
     }
 

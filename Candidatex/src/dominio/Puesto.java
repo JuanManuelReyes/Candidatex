@@ -13,7 +13,7 @@ import java.util.*;
 public class Puesto implements Serializable{
     private String nombre;
     private String tipo; // remoto, presencial, mixto
-    private ArrayList<Tematica> temasRequeridos;
+    private ArrayList<Tematica> temasRequeridos; // Lista de temas requeridos para el puesto.
 
     public Puesto(String nombre, String tipo, ArrayList<Tematica> temasRequeridos) {
         this.nombre = nombre;
@@ -21,12 +21,14 @@ public class Puesto implements Serializable{
         this.temasRequeridos = temasRequeridos;
     }
 
+    // Metodo para añadir un tema requerido.
     public void anadirTemaRequerido(Tematica tema) {
         if (!temasRequeridos.contains(tema)) {
             temasRequeridos.add(tema);
         }
     }
-
+    
+    // Metodo para eliminar un tema de la lista de temas requeridos.
     public void eliminarTemaRequerido(Tematica tema) {
         temasRequeridos.remove(tema);
     }

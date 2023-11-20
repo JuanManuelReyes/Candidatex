@@ -181,6 +181,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
+            // Intenta guardar el estado del sistema en un archivo al cerrar la aplicacion.
             FileOutputStream arch = new FileOutputStream("DATOS");
             ObjectOutputStream salida = new ObjectOutputStream(arch);
             salida.writeObject(modelo);

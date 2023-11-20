@@ -15,8 +15,8 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
 
     public VentanaBajaPostulante(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        cargarLista();
+        modelo = sistema; // Sistema de la aplicacion.
+        cargarLista(); // Carga la lista de postulantes en la interfaz.
     }
 
     @SuppressWarnings("unchecked")
@@ -78,10 +78,12 @@ public class VentanaBajaPostulante extends javax.swing.JFrame implements Observe
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // Toma el postulante seleccionado.
         Postulante post = (Postulante) listaPostulantes.getSelectedValue();
         if (post != null) {
             int opcion = JOptionPane.showConfirmDialog(null, "¿Desea borrar al postulante seleccionado?", "Confirmación", JOptionPane.YES_NO_OPTION);
-
+            
+            // Confirmacion de la eliminacion.
             if (opcion == JOptionPane.YES_OPTION) {
                 modelo.eliminarPostulante(post);
                 cargarLista();

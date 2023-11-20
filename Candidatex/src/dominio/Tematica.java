@@ -10,10 +10,11 @@ package dominio;
 import java.io.*;
 
 public class Tematica implements Serializable {
-
+    // Atributos privados de la clase.
     private String nombre;
     private String descripcion;
 
+    // Constructor de la clase Tematica.
     public Tematica(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

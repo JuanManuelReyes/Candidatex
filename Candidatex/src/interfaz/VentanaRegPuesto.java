@@ -15,9 +15,9 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
 
     public VentanaRegPuesto(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        requeridos = new ArrayList<>();
-        cargarLista();
+        modelo = sistema; // Sistema de la aplicaciOn.
+        requeridos = new ArrayList<>(); // Lista para almacenar los temas requeridos del puesto.
+        cargarLista(); // Carga la lista de temas disponibles.
     }
 
     @SuppressWarnings("unchecked")
@@ -143,7 +143,9 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombrePuestoActionPerformed
 
+    // Metodo para agregar un tema a la lista de requeridos.
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // Valida que haya un tema seleccionado y lo agrega.
         if (listaTemas.getSelectedValue()!=null) {
             Tematica tema = (Tematica) listaTemas.getSelectedValue();
 
@@ -158,9 +160,13 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    // Metodo para registrar un nuevo puesto en el sistema.
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // Toma los datos de los campos de la interfaz.
         String nombrePuesto = txtNombrePuesto.getText();
         String tipo = comboTipo.getSelectedItem().toString();
+        
+        // Valida los datos y en caso positivo hace el registro.
         if (nombrePuesto.isEmpty() || requeridos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -181,7 +187,9 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
         dispose();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
+    // Metodo para eliminar un tema de la lista de requeridos.
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // Valida que haya un tema seleccionado y lo elimina.
         if (listaTemasFinales.getSelectedValue() != null) {
             Tematica selected = (Tematica) listaTemasFinales.getSelectedValue();
             for (Tematica elem : requeridos) {
@@ -199,6 +207,8 @@ public class VentanaRegPuesto extends javax.swing.JFrame implements Observer {
     private void listaTemasFinalesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaTemasFinalesValueChanged
 
     }//GEN-LAST:event_listaTemasFinalesValueChanged
+    
+    // Metodo para cargar las listas de temas en la interfaz.
     public void cargarLista() {
         listaTemas.setListData(modelo.getListaTematica().toArray());
         listaTemasFinales.setListData(requeridos.toArray());

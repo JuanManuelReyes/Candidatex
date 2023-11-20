@@ -15,8 +15,8 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
 
     public VentanaRegEvaluador(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        cargarComboFechas();
+        modelo = sistema; // Sistema de la aplicacion.
+        cargarComboFechas(); // Carga el combobox con las fechas de ingreso posibles.
     }
 
     @SuppressWarnings("unchecked")
@@ -98,13 +98,14 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
         setBounds(450, 200, 396, 288);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metodo para cargar el combobox con las fechas de ingreso posibles, desde 1950 hasta el anio actual.
     public void cargarComboFechas() {
-        int añoActual = LocalDate.now().getYear();
+        int añoActual = LocalDate.now().getYear(); // De esta forma se cubren todos los pisibles futuros anios.
         int añoInicio = 1950;
         comboFecha.removeAllItems();
 
         for (int año = añoActual-1; año >= añoInicio; año--) {
-            comboFecha.addItem(String.valueOf(año));
+            comboFecha.addItem(String.valueOf(año)); // Agrega cada anio al combobox.
         }
     }
 
@@ -113,11 +114,13 @@ public class VentanaRegEvaluador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // Obtiene los valores ingresados por el usuario en los campos de texto y combobox.
         String nombre = txtNombre.getText();
         String cedula = txtCedula.getText();
         String direccion = txtDireccion.getText();
         String fechaText = comboFecha.getSelectedItem().toString();
 
+        // Realiza validaciones y registra el evaluador si todo es correcto.
         if (nombre.isEmpty() || cedula.isEmpty() || direccion.isEmpty() || fechaText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         }else if(modelo.cedulaRepetida(cedula)){

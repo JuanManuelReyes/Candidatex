@@ -13,7 +13,7 @@ import javax.swing.*;
 public class VentanaRegTematica extends javax.swing.JFrame {
 
     public VentanaRegTematica(Sistema sistema) {
-        modelo = sistema;
+        modelo = sistema; // Sistema de la aplicacion.
         initComponents();
     }
 
@@ -94,13 +94,16 @@ public class VentanaRegTematica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // Verifica si los campos de texto estan vacíos.
         if (txtNombre.getText().isEmpty() || txtDescripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            // Crea una nueva tematica y verifica si ya existe en el sistema.
             Tematica tema = new Tematica(txtNombre.getText(), txtDescripcion.getText());
             if (modelo.temaRepetido(tema)) {
                 JOptionPane.showMessageDialog(null, "Temática ya registrada.", "Alerta", JOptionPane.WARNING_MESSAGE);
             } else {
+                // Agrega la nueva tematica al sistema y muestra un mensaje de confirmacion.
                 modelo.agregarTematica(tema);
                 JOptionPane.showMessageDialog(null, "Temática registrada correctamente.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
                 dispose();

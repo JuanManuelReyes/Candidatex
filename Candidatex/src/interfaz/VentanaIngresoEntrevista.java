@@ -15,8 +15,8 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
 
     public VentanaIngresoEntrevista(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        cargarLista();
+        modelo = sistema; // Sistema de la aplicacion.
+        cargarLista(); // Carga las listas de evaluadores y postulantes.
     }
 
     @SuppressWarnings("unchecked")
@@ -118,11 +118,13 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // Obtiene el evaluador y el postulante seleccionados, el puntaje y los comentarios.
         Evaluador eva = (Evaluador) listaEvaluador.getSelectedValue();
         Postulante post = (Postulante) listaPostulantes.getSelectedValue();
         int puntaje = (int) spnPuntaje.getValue();
         String comentarios = txtComentarios.getText();
 
+        // Realiza validaciones y registra la entrevista si todo es correcto.
         if (comentarios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (eva == null || post == null) {
@@ -135,6 +137,7 @@ public class VentanaIngresoEntrevista extends javax.swing.JFrame implements Obse
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    // Metodo para cargar las listas de evaluadores y postulantes.
     public void cargarLista() {
         listaEvaluador.setListData(modelo.getListaEvaluador().toArray());
         listaPostulantes.setListData(modelo.getListaPostulantes().toArray());

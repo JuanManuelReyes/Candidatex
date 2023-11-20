@@ -47,6 +47,7 @@ public class Sistema extends Observable implements Serializable {
         return listaEntrevistas;
     }
 
+    // Metodos para verificar si una tematica o puesto ya existe en las listas.
     public boolean temaRepetido(Tematica tematica) {
         boolean res = false;
         for (Tematica elem : listaTematica) {
@@ -67,6 +68,7 @@ public class Sistema extends Observable implements Serializable {
         return res;
     }
 
+    // Metodos para agregar entidades a las listas y notificar cambios.
     public void agregarTematica(Tematica tematica) {
         listaTematica.add(tematica);
         setChanged();
@@ -97,6 +99,7 @@ public class Sistema extends Observable implements Serializable {
         notifyObservers();
     }
 
+    // Metodos para buscar entidades por nombre.
     public Puesto buscarPuestoPorNombre(String nombrePuesto) {
         for (Puesto puesto : listaPuestos) {
             if (puesto.getNombre().equals(nombrePuesto)) {
@@ -115,6 +118,7 @@ public class Sistema extends Observable implements Serializable {
         return null;
     }
 
+    // Metodo para eliminar un postulante y sus entrevistas asociadas.
     public void eliminarPostulante(Postulante post) {
         listaPostulantes.remove(post);
 
@@ -129,6 +133,7 @@ public class Sistema extends Observable implements Serializable {
 
     }
 
+    // Metodos para validar cedula, telefono, correo electronico y enlaces de LinkedIn.
     public boolean cedulaRepetida(String unaCedula) {
         boolean res = false;
         for (Postulante post : listaPostulantes) {

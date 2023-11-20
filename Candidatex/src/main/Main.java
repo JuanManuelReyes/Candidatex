@@ -11,6 +11,7 @@ import interfaz.*;
 
 public class Main {
     public static void main(String[] args) {
+        // Crea un objeto de la clase VentanaInicio y lo hace visible dando inicio al programa.
         VentanaInicio test = new VentanaInicio();
         test.setVisible(true);
     }

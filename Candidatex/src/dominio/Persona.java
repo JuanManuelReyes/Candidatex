@@ -15,6 +15,7 @@ public class Persona implements Serializable {
     private String cedula;
     private String direccion;
 
+    // Constructor de la clase Persona.
     public Persona(String nombre, String cedula, String direccion) {
         this.nombre = nombre;
         this.cedula = cedula;

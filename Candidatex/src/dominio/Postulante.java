@@ -19,7 +19,7 @@ public class Postulante extends Persona implements Serializable {
     private Map<Tematica, Integer> conocimientos; // Tematica y nivel
 
     public Postulante(String nombre, String cedula, String direccion, String telefono, String mail, String linkedin, String formato, Map<Tematica, Integer> conocimientos) {
-        super(nombre, cedula, direccion);
+        super(nombre, cedula, direccion); // Llama al constructor de la clase padre (Persona).
         this.telefono = telefono;
         this.mail = mail;
         this.linkedin = linkedin;
@@ -27,6 +27,7 @@ public class Postulante extends Persona implements Serializable {
         this.conocimientos = conocimientos;
     }
 
+    // Metodo para agregar un conocimiento a la lista del postulante.
     public void agregarConocimiento(Tematica tematica, int nivel) {
         if (nivel >= 1 && nivel <= 10) {
             conocimientos.put(tematica, nivel);
@@ -35,6 +36,7 @@ public class Postulante extends Persona implements Serializable {
         }
     }
 
+    // Metodo para eliminar un conocimiento de la lista del postulante.
     public void eliminarConocimiento(Tematica tematica) {
         conocimientos.remove(tematica);
     }
@@ -79,17 +81,20 @@ public class Postulante extends Persona implements Serializable {
         this.conocimientos = conocimientos;
     }
 
+    // Metodo para obtener las entrevistas asociadas a un postulante en el sistema.
     public List<Entrevista> getEntrevistas(Sistema sistema) {
         List<Entrevista> entrevistasDelPostulante = new ArrayList<>();
 
+        // Recorre todas las entrevistas y selecciona las del postulante.
         for (Entrevista entrevista : sistema.getListaEntrevistas()) {
-            if (entrevista.getPostulante().equals(this)) {
+            if (entrevista.getPostulante().equals(this)) { // Verifica si el postulante tiene conocimientos en el tema.
                 entrevistasDelPostulante.add(entrevista);
             }
         }
         return entrevistasDelPostulante;
     }
-
+    
+    // Metodo para obtener el nivel de conocimiento en una tematica especifica.
     public int getNivelEnTema(Tematica tema) {
         int nivel = 0;
         if (conocimientos.containsKey(tema)) {
@@ -98,11 +103,13 @@ public class Postulante extends Persona implements Serializable {
         return nivel;
     }
     
+    // Metodo para obtener el puntaje de la ultima entrevista del postulante.
     public int getPuntajeUltimaEntrevista(Sistema sistema) {
         List<Entrevista> entrevistas = getEntrevistas(sistema);
         int puntaje = 0; 
 
         if (!entrevistas.isEmpty()) {
+            // Encuentra la ultima entrevista segun el numero de entrevista y obtiene su puntaje.
             Entrevista ultimaEntrevista = Collections.max(entrevistas, Comparator.comparing(Entrevista::getNumero));
             puntaje = ultimaEntrevista.getPuntaje();
         }

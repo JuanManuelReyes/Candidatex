@@ -18,29 +18,35 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
 
     public VentanaHistorialPostulante(Sistema sistema) {
         initComponents();
-        modelo = sistema;
-        cargarPostulantes();
-        originalTableModel = (DefaultTableModel) tblBuscador.getModel();
+        modelo = sistema; // Sistema de la aplicacion.
+        cargarPostulantes(); // Metodo para cargar la lista de postulantes en la interfaz.
+        originalTableModel = (DefaultTableModel) tblBuscador.getModel(); // Guarda el modelo de la tabla tblBuscador.
 
+        // Este listener se activara cuando se presione el boton de busqueda.
         btnBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarActionPerformed(evt); // Llama al metodo btnBuscarActionPerformed cuando se produce el evento.
             }
         });
 
-        resetearTabla();
+        resetearTabla(); // Llama al metodo para volver al estado inicial de la tabla.
     }
 
+    // Metodo para cargar y mostrar la lista de postulantes en la interfaz.
     private void cargarPostulantes() {
-        DefaultListModel<String> model = new DefaultListModel<>();
+        DefaultListModel<String> model = new DefaultListModel<>(); // Crea un modelo de lista para los postulantes.
+        // Obtiene la lista de postulantes del sistema.
         List<Postulante> postulantes = new ArrayList<>(modelo.getListaPostulantes());
 
+        // Ordena los postulantes por su cedula.
         postulantes.sort(Comparator.comparing(Postulante::getCedula));
 
         for (Postulante postulante : postulantes) {
+            // Agrega cada postulante a la lista.
             model.addElement(postulante.getNombre() + " (" + postulante.getCedula() + ")");
         }
-
+        
+        // Establece el modelo de la lista con los postulantes cargados.
         listaPostulantes.setModel(model);
     }
 
@@ -259,22 +265,29 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         mostrarDatos();
     }//GEN-LAST:event_listaPostulantesValueChanged
 
+    // Metodo para mostrar los datos del postulante seleccionado en la interfaz.
     public void mostrarDatos() {
         ArrayList<String> res = new ArrayList<>();
+        
+        // Verifica si hay un postulante seleccionado en la lista.
         if (listaPostulantes.getSelectedValue() != null) {
             Postulante selected = null;
             String selectedPost = listaPostulantes.getSelectedValue().toString();
+            
+            // Extrae la cEdula del postulante seleccionado del texto.
             int posIni = selectedPost.indexOf(" (");
             int posEnd = selectedPost.indexOf(")");
             String selectedCedula = selectedPost.substring(posIni + 2, posEnd);
+            
+            // Busca el postulante correspondiente en la lista del sistema.
             ArrayList<Postulante> list = modelo.getListaPostulantes();
-
             for (Postulante post : list) {
                 if (selectedCedula.equals(post.getCedula())) {
                     selected = post;
                 }
             }
 
+            // Muestra la informaciOn del postulante seleccionado en la interfaz.
             outNombre.setText(selected.getNombre());
             outCedula.setText(selected.getCedula());
             outDireccion.setText(selected.getDireccion());
@@ -283,6 +296,7 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             outLinkedin.setText(selected.getLinkedin());
             outFormato.setText(selected.getFormato());
 
+            // Itera sobre la experiencia del postulante y la agrega a la lista de experiencia.
             Map<Tematica, Integer> mapExp = selected.getConocimientos();
             for (Map.Entry<Tematica, Integer> entry : mapExp.entrySet()) {
                 Tematica tema = entry.getKey();
@@ -291,8 +305,10 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             }
             outListaExp.setListData(res.toArray());
 
+            // Carga las entrevistas del postulante seleccionado.
             cargarEntrevistas(selected, modelo);
         } else {
+            // Si no hay postulante seleccionado, se muestra "Sin datos" en los campos de informacion.
             outNombre.setText("Sin datos.");
             outCedula.setText("Sin datos.");
             outDireccion.setText("Sin datos.");
@@ -300,19 +316,24 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
             outMail.setText("Sin datos.");
             outLinkedin.setText("Sin datos.");
             outFormato.setText("Sin datos.");
+            
+            // Limpia la lista de experiencia y resetea la tabla de entrevistas.
             res.clear();
             outListaExp.setListData(res.toArray());
             resetearTabla();
         }
 
+        // Establece el estilo del enlace de LinkedIn si hay un enlace disponible.
         if (!"Sin datos.".equals(outLinkedin.getText())) {
             Font font = outLinkedin.getFont();
             Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+            // Configura el enlace como subrayado y en color azul.
             attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
             attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);
             outLinkedin.setFont(font.deriveFont(attributes));
             outLinkedin.setForeground(blue);
         } else {
+            // Restablece el estilo del enlace de LinkedIn si no hay enlace.
             Font font = outLinkedin.getFont();
             Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
             attributes.put(TextAttribute.UNDERLINE, null);
@@ -322,10 +343,13 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         }
     }
 
+    // Metodo que se ejecuta al hacer clic en el enlace de LinkedIn en la interfaz.
     private void outLinkedinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outLinkedinMouseClicked
+        // Obtiene el URL de LinkedIn del postulante mostrado en la interfaz.
         String linkedinURL = outLinkedin.getText();
         if (linkedinURL.startsWith("https://")) {
             try {
+                // Intenta abrir el enlace de LinkedIn en el navegador.
                 Desktop.getDesktop().browse(new URI(linkedinURL));
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -333,23 +357,35 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         }
     }//GEN-LAST:event_outLinkedinMouseClicked
 
+    // Metodo para manejar la busqueda cuando se presiona el boton "Buscar".
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // Obtiene el texto ingresado en el campo de busqueda y lo convierte a minusculas.
         String textoBusqueda = txtBuscador.getText().toLowerCase();
+        // Crea un TableRowSorter para el modelo de la tabla tblBuscador.
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tblBuscador.getModel());
+        // Asigna el sorter a la tabla tblBuscador.
         tblBuscador.setRowSorter(sorter);
 
+        // Limpia los posibles formatos HTML previos en la tabla (para evitar textos erroneos).
         limpiarHTML();
+        
+        // Si el texto de busqueda no esta vacio, aplica el filtro en la tabla
         if (!textoBusqueda.isEmpty()) {
+            // Establece un filtro de fila en el sorter que busca el texto en la columna de comentarios (índice 3).
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(textoBusqueda), 3));
 
+            // Itera en las filas de la tabla y resalta el texto buscado.
             for (int i = 0; i < tblBuscador.getRowCount(); i++) {
+                // Obtiene el comentario de la fila y resalta las coincidencias.
                 String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
                 comentario = comentario.replaceAll("(?i)(" + textoBusqueda + ")", "<font color='red'>$1</font>");
                 sorter.getModel().setValueAt("<html>" + comentario + "</html>", sorter.convertRowIndexToModel(i), 3);
             }
         } else {
+            // Si el texto de busqueda esta vacio, elimina el filtro de la tabla.
             sorter.setRowFilter(null);
 
+            // Restablece los comentarios a su formato original sin HTML.
             for (int i = 0; i < tblBuscador.getRowCount(); i++) {
                 String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
                 comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
@@ -357,46 +393,67 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
                 sorter.getModel().setValueAt(comentario, sorter.convertRowIndexToModel(i), 3);
             }
         }
+        // Restablece los comentarios a su formato original sin HTML.
         tblBuscador.repaint();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    // Metodo para restablecer la vista de la tabla cuando se presiona el boton "Resetear".
     private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
+        // Limpia el campo de texto del buscador.
         txtBuscador.setText("");
+        // Obtiene el TableRowSorter actualmente asignado a la tabla tblBuscador.
         TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) tblBuscador.getRowSorter();
+        // Elimina cualquier filtro aplicado a la tabla, mostrando todas las filas.
         sorter.setRowFilter(null);
         
+        // Itera en todas las filas de la tabla.
         for (int i = 0; i < tblBuscador.getRowCount(); i++) {
+            // Obtiene el comentario de la fila actual y elimina cualquier formato HTML.
             String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
             comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
                                    .replaceAll("<font color='red'>", "").replaceAll("</font>", "");
+            // Actualiza el comentario en la fila con el formato original sin resaltado.
             sorter.getModel().setValueAt(comentario, sorter.convertRowIndexToModel(i), 3);
         }
+        // Refresca la tabla para mostrar los cambios realizados.
         tblBuscador.repaint();
     }//GEN-LAST:event_btnResetearActionPerformed
     
+    // Metodo para eliminar el formato HTML de los comentarios en la tabla.
     private void limpiarHTML(){
+        // Obtiene el sorter actual de la tabla.
         TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) tblBuscador.getRowSorter();
 
+        // Elimina cualquier filtro aplicado.
         sorter.setRowFilter(null);
 
+        // Itera en todas las filas de la tabla.
         for (int i = 0; i < tblBuscador.getRowCount(); i++) {
+            // Obtiene el comentario de la fila y elimina el formato HTML.
             String comentario = (String) sorter.getModel().getValueAt(sorter.convertRowIndexToModel(i), 3);
 
             comentario = comentario.replaceAll("<html>", "").replaceAll("</html>", "")
                                    .replaceAll("<font color='red'>", "").replaceAll("</font>", "");
 
+            // Actualiza el comentario en la fila sin formato HTML.
             sorter.getModel().setValueAt(comentario, sorter.convertRowIndexToModel(i), 3);
         }
 
+        // Refresca la tabla para mostrar los cambios.
         tblBuscador.repaint();
     }
+    
+    // Metodo para cargar las entrevistas de un postulante seleccionado en la tabla.
     private void cargarEntrevistas(Postulante postulante, Sistema modelo) {
+        // Obtiene y limpia el modelo de la tabla.
         DefaultTableModel tableModel = (DefaultTableModel) tblBuscador.getModel();
         tableModel.setRowCount(0);
 
+        // Obtiene y ordena las entrevistas del postulante.
         List<Entrevista> entrevistas = postulante.getEntrevistas(modelo);
         Collections.sort(entrevistas, Comparator.comparingInt(Entrevista::getNumero));
 
+        // Añade cada entrevista a la tabla.
         for (Entrevista entrevista : entrevistas) {
             Object[] rowData = new Object[]{
                 entrevista.getNumero(),
@@ -408,10 +465,13 @@ public class VentanaHistorialPostulante extends javax.swing.JFrame implements Ob
         }
     }
 
+    // Metodo para restablecer la tabla de entrevistas a su estado original.
     private void resetearTabla() {
+        // Obtiene el modelo actual de la tabla y lo limpia.
         DefaultTableModel currentModel = (DefaultTableModel) tblBuscador.getModel();
         currentModel.setRowCount(0);
 
+        // Agrega cada fila del modelo original de la tabla al modelo actual.
         for (int i = 0; i < originalTableModel.getRowCount(); i++) {
             Vector rowData = (Vector) originalTableModel.getDataVector().get(i);
             currentModel.addRow(rowData);

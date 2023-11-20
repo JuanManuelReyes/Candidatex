@@ -10,9 +10,11 @@ package dominio;
 import java.io.*;
 import java.util.*;
 
+// Clase ArchivoGrabacion para gestionar la escritura en archivos.
 public class ArchivoGrabacion {
     private Formatter out;
 
+    // Constructor que crea un objeto ArchivoGrabacion abriendo o creando un archivo con un nombre dado.
     public ArchivoGrabacion(String unNombre) {
         try {
             out = new Formatter(unNombre);
@@ -25,6 +27,7 @@ public class ArchivoGrabacion {
         }
     }
 
+    // Constructor que permite especificar si se debe extender el archivo existente.
     public ArchivoGrabacion(String unNombre, boolean ext) {
         try {
             FileWriter f = new FileWriter(unNombre, ext);
@@ -35,10 +38,12 @@ public class ArchivoGrabacion {
         }
     }
 
+    // Metodo para grabar una linea en el archivo.
     public void grabarLinea(String linea) {
         out.format("%s%n", linea);
     }
 
+    // Metodo para cerrar el archivo.
     public void cerrar() {
         out.close();
     }
